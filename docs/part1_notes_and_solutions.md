@@ -296,7 +296,7 @@ As booleans values `True` and `False` can be associated to $$1$$ and $$0$$, the 
 
 ## 3-4 3-5 Monoid as Set and Category
 
-Monoid are ubiquitous in programming, showing up as `Char`, `List`, recursive data structures, futures in concurrent programming, and so on. They are categories, $\mathcal{C}$, with just one object, $* \in \mathcal{C}$, such that there is only one homset, $\Hom\mathcal{C}(*,*)$, which is the identity morphism, $$\text{id}_*: * \to *$$. Some refer to a monoid as a singleton category, which acts analogous to a singleton set (which was introduced in [Section 2-6](#2-6-examples-of-types)), meaning that a *functor* (functors are introduced in [Chapte 7](#7-functors)) from a monoid to any other category selects an object in that category.
+Monoid are ubiquitous in programming, showing up as `Char`, `List`, recursive data structures, futures in concurrent programming, and so on. They are categories, $\mathcal{C}$, with just one object, $* \in \mathcal{C}$, such that there is only one homset, $\Hom\mathcal{C}(*,*)$, which is the identity morphism, $\text{id}_*: * \to *$. Some refer to a monoid as a singleton category, which acts analogous to a singleton set (which was introduced in [Section 2-6](#2-6-examples-of-types)), meaning that a *functor* (functors are introduced in [Chapte 7](#7-functors)) from a monoid to any other category selects an object in that category.
 
 Monoidal categories have been used to formalise the use of networks in computation and reasoning—amongst others, applications include circuit diagrams, Markov processes, quantum computation, and dynamical systems.
 
@@ -307,14 +307,14 @@ Monoidal categories have been used to formalise the use of networks in computati
 
 
 > [[PC]](#PC), Definition 1.46, page 18:</br>
-> A *monoid* as category $$(M, e, \diamond)$$ consists of:</br>
-> - a single set $$M$$, called the *carrier*;</br>
-> - an element $$e \in M$$, called the *unit*; and</br>
-> - an associative function $$\diamond : M \times M \to M$$, called the (binary) *operation*.
+> A *monoid* as category $(M, e, \diamond)$ consists of:</br>
+> - a single set $M$, called the *carrier*;</br>
+> - an element $e \in M$, called the *unit*; and</br>
+> - an associative function $\diamond : M \times M \to M$, called the (binary) *operation*.
 >
 > These are subject to two conditions:
-> - unitality/identity: for any $$m \in M$$, we have $$e \diamond m = m$$ and $$m \diamond e = m$$, thus $$e = \text{id}_M$$;</br>
-> - associativity: for any $$l,m,n \in M$$, we have $$(l \diamond m) \diamond n = l \diamond (m \diamond n).$$
+> - unitality/identity: for any $m \in M$, we have $e \diamond m = m$ and $m \diamond e = m$, thus $e = \text{id}_M$;</br>
+> - associativity: for any $l,m,n \in M$, we have $(l \diamond m) \diamond n = l \diamond (m \diamond n)$.
 
 
 
@@ -340,7 +340,7 @@ letters of the alphabet: a, b, c ... z.
 **2. What kind of order is this?**
 - a) A set of sets with the inclusion relation: A is included in B if every element of A is also an element of B.
 
-Our morphisms are subset relations. Every set includes itself, $$A \subseteq A$$. Inclusion is also composable. $$A \subseteq B$$ and $$B \subseteq C$$ implies $$A \subseteq C$$. This means that we at least have a preorder. If $$A \subseteq B$$ and $$B \subseteq A$$ then $$A = B$$, which means that we at least have a partial order. Not all objects are a subset of each other though. For example {1} and {2,3} are not subsets of each other. This means we don't have a total order and only a partial order.
+Our morphisms are subset relations. Every set includes itself, $A \subseteq A$. Inclusion is also composable. $A \subseteq B$ and $B \subseteq C$ implies $A \subseteq C$. This means that we at least have a preorder. If $A \subseteq B$ and $B \subseteq A$ then $A = B$, which means that we at least have a partial order. Not all objects are a subset of each other though. For example {1} and {2,3} are not subsets of each other. This means we don't have a total order and only a partial order.
 
 - b) C++ types with the following subtyping relation: T1 is a sub-type of T2 if a pointer to T1 can be passed to a function that expects a pointer to T2 without triggering a compilation error.
 
