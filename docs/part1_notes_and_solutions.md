@@ -296,14 +296,14 @@ As booleans values `True` and `False` can be associated to $$1$$ and $$0$$, the 
 
 ## 3-4 3-5 Monoid as Set and Category
 
-Monoid are ubiquitous in programming, showing up as `Char`, `List`, recursive data structures, futures in concurrent programming, and so on. They are categories, $$\mathcal{C}$$, with just one object, $$* \in \mathcal{C}$$, such that there is only one homset, $$\Hom\mathcal{C}(*,*)$$, which is the identity morphism, $$\text{id}_*: * \to *$$. Some refer to a monoid as a singleton category, which acts analogous to a singleton set (which was introduced in [Section 2-6](#2-6-examples-of-types)), meaning that a *functor* (functors are introduced in [Chapte 7](#7-functors)) from a monoid to any other category selects an object in that category.
+Monoid are ubiquitous in programming, showing up as `Char`, `List`, recursive data structures, futures in concurrent programming, and so on. They are categories, $\mathcal{C}$, with just one object, $* \in \mathcal{C}$, such that there is only one homset, $\Hom\mathcal{C}(*,*)$, which is the identity morphism, $$\text{id}_*: * \to *$$. Some refer to a monoid as a singleton category, which acts analogous to a singleton set (which was introduced in [Section 2-6](#2-6-examples-of-types)), meaning that a *functor* (functors are introduced in [Chapte 7](#7-functors)) from a monoid to any other category selects an object in that category.
 
 Monoidal categories have been used to formalise the use of networks in computation and reasoning—amongst others, applications include circuit diagrams, Markov processes, quantum computation, and dynamical systems.
 
 ## 2-6 Examples of Types
 
 > [[CH]](#CH), Definition 1.2, page 10:</br>
-> A *monoid* as set $$(M, e, \diamond)$$ consists of:</br>
+> A *monoid* as set $(M, e, \diamond)$ consists of:</br>
 
 
 > [[PC]](#PC), Definition 1.46, page 18:</br>
