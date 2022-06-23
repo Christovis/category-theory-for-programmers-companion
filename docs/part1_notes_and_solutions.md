@@ -518,7 +518,9 @@ The table below lists some examples of duality. Most of them weren't introduced 
 
 Table 5-3-1: Some examples of duality.
 
-Note that monoidal categories, $\mathcal{C}(*)$, are equal to their opposite category, $\mathcal{C}^{\text{op}}$, as there is only one homset, $\Hom\mathcal{C}(*,*)$,  which is the identity morphism, $\text{id}_* = \text{id}^{\text{op}}_*$.
+Note that monoidal categories, $\mathcal{C}(\ast)$, are equal to their opposite category,
+$\mathcal{C}^{\text{op}}$, as there is only one homset, $\Hom\mathcal{C}(\ast,\ast)$,
+which is the identity morphism, $\text{id}_* = \text{id}^{\text{op}}_*$.
 
 ## 5-4 Isomorphisms
 
@@ -553,19 +555,10 @@ Spelling this out in words, to say that two functions are equal up to isomorphis
 >
 > (This definition is basically the same as [[SSC]](#SSC), Definition 3.71, page 110)
 
-Note, that in the definition above the universal property is shown as a dashed line, which is quite common in diagrammatic notations (some also use dotted lines).
-
-In terms of Haskell, the cartesian product, $x \times y$, is a tuple `(x,y)`, and the two morphisms $\pi\_1$
+Note, that in the definition above the universal property is shown as a dashed line, which is quite common in diagrammatic notations (some also use dotted lines). In terms of Haskell, the cartesian product, $x \times y$,
+is a tuple `(x,y)`, and the two morphisms $\pi\_1$
 and $\pi\_2$ are the function `fst (x,y)` and `snd (x,y)` which are both part of Prelude.
 
-
-Test this `\(\pi\_1 = 132\)`
-
-against this $\pi\_1$
-
-and this $x$
-
-vs this $x$ where text is written behind it.
 
 The important lesson here, which is useful for thinking about programming, is about solving functions as $h: a \to x \times y$: to compute a cartesian product $x \times y$ we can decompose it into a pair of functions that we can easily solve, $f: a \to x$ and $g: a \to y$. In other words, through the universal property of products we have a one-to-one correspondence between
 
