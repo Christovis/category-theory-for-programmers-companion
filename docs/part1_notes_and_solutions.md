@@ -610,7 +610,7 @@ In the category of sets, the coproduct is the *disjoint union* of two sets. An e
 
 Similar to the lesson we learned about products, the coproduct is important for solving functions like $h: x + y \to a$: to compute it we can decompose it into a pair of functions that we can solve more easily, $f: x \to a$ and $g: y \to a$. In other words, through the universal property of coproducts we have a one-to-one correspondence between
 
-$$\Hom\mathcal{C}(x + y, a) \cong \Hom\mathcal{C}(x, a) \times \Hom\mathcal{C}(y, a)$$.
+$$\Hom\mathcal{C}(x + y, a) \cong \Hom\mathcal{C}(x, a) \times \Hom\mathcal{C}(y, a)$$
 
 Explain the $\times$ instead of a
 $+$ in the equation above!!!
