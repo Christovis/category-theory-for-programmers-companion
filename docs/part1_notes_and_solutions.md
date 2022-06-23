@@ -552,7 +552,7 @@ Spelling this out in words, to say that two functions are equal up to isomorphis
 
 Note, that in the definition above the universal property is shown as a dashed line, which is quite common in diagrammatic notations (some also use dotted lines).
 
-In terms of Haskell, the cartesian product, $x \times y$, is a tuple `(x,y)`, and the two morphisms $\pi_1$ and $\pi_2$ are the function `fst (x,y)` and `snd (x,y)` which are both part of Prelude.
+In terms of Haskell, the cartesian product, $x \times y$, is a tuple `(x,y)`, and the two morphisms $\pi\_1$ and $\pi\_2$ are the function `fst (x,y)` and `snd (x,y)` which are both part of Prelude.
 
 The important lesson here, which is useful for thinking about programming, is about solving functions as $h: a \to x \times y$: to compute a cartesian product $x \times y$ we can decompose it into a pair of functions that we can easily solve, $f: a \to x$ and $g: a \to y$. In other words, through the universal property of products we have a one-to-one correspondence between
 
@@ -569,7 +569,7 @@ untuple :: (c -> (a, b)) -> (c -> a, c -> b)
 untuple h = (\c -> fst (h c), \c -> snd (h c))
 ```
 
-If a category $ \mathcal{C} $ has a terminal object and cartesian products, then it has $ n $-arity products for all $ n $: the terminal object is like the $ 0 $-arity product, in other words the terminal object is a unit for the product (arity is the number of arguments of a function). We would say that $ \mathcal{C} $ has *all finite products* and we say that a category is a *cartesian category* if it has all finite products ([[PC]](#PC), page 43). That is, the terminal object $ 1 $ (the unit type `()` in Haskell) is a unit for products, such that for any object $ x $ in $ \mathcal{C} $ we have $ 1 \times x \cong x \times 1 \cong x $.
+If a category $\mathcal{C}$ has a terminal object and cartesian products, then it has $n$-arity products for all $n$: the terminal object is like the $0$-arity product, in other words the terminal object is a unit for the product (arity is the number of arguments of a function). We would say that $ \mathcal{C} $ has *all finite products* and we say that a category is a *cartesian category* if it has all finite products ([[PC]](#PC), page 43). That is, the terminal object $ 1 $ (the unit type `()` in Haskell) is a unit for products, such that for any object $ x $ in $ \mathcal{C} $ we have $ 1 \times x \cong x \times 1 \cong x $.
 
 Note: the triangles $ \pi_1 \circ h = f $ and $ \pi_2 \circ h = g $ are both *choice problems* as introduced in [[CM]](#CM) Article 2.2, page 45.
 
@@ -595,7 +595,7 @@ Similar to the lesson we learned about products, the coproduct is important for 
 
 $$\Hom\mathcal{C}(x + y, a) \cong \Hom\mathcal{C}(x, a) \times \Hom\mathcal{C}(y, a)$$.
 
-Explain the $ \times $ instead of a $ + $ in the equation above!!!
+Explain the $\times$ instead of a $+$ in the equation above!!!
 
 When reading any Haskell book, after fundamental data types -- such as `Void` and `()` -- have been explained, one is introduced to algebraic data type constructors that compose data types to give a new one (such as `Bool = {True, False}`). In this context, without really knowing, one uses coproducts which in computer science are more commonly called *sum types* which are discussed in [Section 6-3](#6-3-sum-types).
 
