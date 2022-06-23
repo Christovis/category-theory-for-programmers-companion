@@ -520,7 +520,7 @@ Table 5-3-1: Some examples of duality.
 
 Note that monoidal categories, $\mathcal{C}(\ast)$, are equal to their opposite category,
 $\mathcal{C}^{\text{op}}$, as there is only one homset, $\Hom\mathcal{C}(\ast,\ast)$,
-which is the identity morphism, $\text{id}_* = \text{id}^{\text{op}}_*$.
+which is the identity morphism, $\text{id}_{\ast} = \text{id}^{\text{op}}_{\ast}$.
 
 ## 5-4 Isomorphisms
 
@@ -588,7 +588,11 @@ More notes in:
 In the category of sets, the coproduct is the *disjoint union* of two sets. An element of the disjoint union of the two sets `a` and `b` is either an element of `a` or an element of `b`. If the two sets overlap, the disjoint union contains two copies of the common part.
 
 > [[PC]](#PC), Definition 2.31, page 43:</br>
-> Let $x$ and $y$ be objects in a category $\mathcal{C}$. A *coproduct* of $x$ and $y$ is an object, denoted as $x+y$, together with two morphisms $i_1: x \to x+y$ and $i_2: y \to x+y$, such that for any object $a$ and morphisms $f: x \to a$ and $g: y \to a$, there is a unique morphism $h: x+y \to a$ such that the following diagram commutes:
+> Let $x$ and
+> $y$ be objects in a category $\mathcal{C}$.
+> A *coproduct* of $x$ and
+> $y$ is an object, denoted as $x+y$, together with two morphisms
+> $i_1: x \to x+y$ and $i_2: y \to x+y$, such that for any object $a$ and morphisms $f: x \to a$ and $g: y \to a$, there is a unique morphism $h: x+y \to a$ such that the following diagram commutes:
 >
 > <img src="./imgs/definition_5_6_coproducts.png" alt="Definition of coproducts from 'Programming with Categories'" style="height:150px;"/>
 > Figure 5-6-1
