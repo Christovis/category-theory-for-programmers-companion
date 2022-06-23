@@ -552,7 +552,8 @@ Spelling this out in words, to say that two functions are equal up to isomorphis
 
 Note, that in the definition above the universal property is shown as a dashed line, which is quite common in diagrammatic notations (some also use dotted lines).
 
-In terms of Haskell, the cartesian product, $x \times y$, is a tuple `(x,y)`, and the two morphisms $\pi\_1$ and $\pi\_2$ are the function `fst (x,y)` and `snd (x,y)` which are both part of Prelude.
+In terms of Haskell, the cartesian product, $x \times y$, is a tuple `(x,y)`, and the two morphisms $\pi\_1$
+and $\pi\_2$ are the function `fst (x,y)` and `snd (x,y)` which are both part of Prelude.
 
 
 Test this `\(\pi\_1 = 132\)`
