@@ -559,6 +559,10 @@ Test this `\(\pi\_1 = 132\)`
 
 against this $\pi\_1$
 
+and this $x$
+
+vs this $x$ where text is written behind it.
+
 The important lesson here, which is useful for thinking about programming, is about solving functions as $h: a \to x \times y$: to compute a cartesian product $x \times y$ we can decompose it into a pair of functions that we can easily solve, $f: a \to x$ and $g: a \to y$. In other words, through the universal property of products we have a one-to-one correspondence between
 
 $$\Hom\mathcal{C}(a, x \times y) \cong \Hom\mathcal{C}(a, x) \times \Hom\mathcal{C}(a, y)$$,
