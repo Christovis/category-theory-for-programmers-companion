@@ -612,11 +612,13 @@ Similar to the lesson we learned about products, the coproduct is important for 
 
 $$\Hom\mathcal{C}(x + y, a) \cong \Hom\mathcal{C}(x, a) \times \Hom\mathcal{C}(y, a)$$.
 
-Explain the $\times$ instead of a $+$ in the equation above!!!
+Explain the $\times$ instead of a
+$+$ in the equation above!!!
 
 When reading any Haskell book, after fundamental data types -- such as `Void` and `()` -- have been explained, one is introduced to algebraic data type constructors that compose data types to give a new one (such as `Bool = {True, False}`). In this context, without really knowing, one uses coproducts which in computer science are more commonly called *sum types* which are discussed in [Section 6-3](#6-3-sum-types).
 
-Above learned that the terminal object is a unit for products. The dual for coproducts is, that the inital object $0$ (`Void` in Haskell) is a unit for coproducts. That is, for any object $x$ in a category with coproducts $0 + x \cong x + 0 \cong x$.
+Above learned that the terminal object is a unit for products. The dual for coproducts is, that the inital object $0$ (`Void` in Haskell) is a unit for coproducts.
+That is, for any object $x$ in a category with coproducts $0 + x \cong x + 0 \cong x$.
 
 I also notice that the triangles $h \circ i_1 = f$ and $h \circ i_2 = g$ are Both *determination problems* as introduced in [[CM]](#CM) Article 2.2, page 45.
 
