@@ -546,13 +546,18 @@ Spelling this out in words, to say that two functions are equal up to isomorphis
 > <img src="./imgs/definition_5_5_products.png" alt="Definition of products from 'Programming with Categories'" style="height:150px;"/>
 > Figure 5-5-1
 >
-> Often we just refer to $x \times y$ as the product of $x$ and $y$. We call the morphisms $\pi_1$ and $\pi_2$ *projection maps* and *h* is frequently denoted as $h = \langle f, g \rangle$.
+> Often we just refer to $x \times y$ as the product of $x$ and $y$. We call the morphisms $\pi\_1$ and $\pi\_2$ *projection maps* and *h* is frequently denoted as $h = \langle f, g \rangle$.
 >
 > (This definition is basically the same as [[SSC]](#SSC), Definition 3.71, page 110)
 
 Note, that in the definition above the universal property is shown as a dashed line, which is quite common in diagrammatic notations (some also use dotted lines).
 
 In terms of Haskell, the cartesian product, $x \times y$, is a tuple `(x,y)`, and the two morphisms $\pi\_1$ and $\pi\_2$ are the function `fst (x,y)` and `snd (x,y)` which are both part of Prelude.
+
+
+Test this `\(\pi\_1 = 132\)`
+
+against this $\pi\_1$
 
 The important lesson here, which is useful for thinking about programming, is about solving functions as $h: a \to x \times y$: to compute a cartesian product $x \times y$ we can decompose it into a pair of functions that we can easily solve, $f: a \to x$ and $g: a \to y$. In other words, through the universal property of products we have a one-to-one correspondence between
 
