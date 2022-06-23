@@ -546,7 +546,9 @@ Spelling this out in words, to say that two functions are equal up to isomorphis
 > <img src="./imgs/definition_5_5_products.png" alt="Definition of products from 'Programming with Categories'" style="height:150px;"/>
 > Figure 5-5-1
 >
-> Often we just refer to $x \times y$ as the product of $x$ and $y$. We call the morphisms $\pi\_1$ and $\pi\_2$ *projection maps* and *h* is frequently denoted as $h = \langle f, g \rangle$.
+> Often we just refer to $x \times y$ as the product of $x$
+> and $y$. We call the morphisms $\pi\_1$ and
+> $\pi\_2$ *projection maps* and *h* is frequently denoted as $h = \langle f, g \rangle$.
 >
 > (This definition is basically the same as [[SSC]](#SSC), Definition 3.71, page 110)
 
