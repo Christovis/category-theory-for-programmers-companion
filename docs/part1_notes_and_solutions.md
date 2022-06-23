@@ -547,7 +547,8 @@ Spelling this out in words, to say that two functions are equal up to isomorphis
 > Figure 5-5-1
 >
 > Often we just refer to $x \times y$ as the product of $x$
-> and $y$. We call the morphisms $\pi\_1$ and
+> and $y$.
+> We call the morphisms $\pi\_1$ and
 > $\pi\_2$ *projection maps* and *h* is frequently denoted as $h = \langle f, g \rangle$.
 >
 > (This definition is basically the same as [[SSC]](#SSC), Definition 3.71, page 110)
