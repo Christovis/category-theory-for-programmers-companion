@@ -569,9 +569,9 @@ untuple :: (c -> (a, b)) -> (c -> a, c -> b)
 untuple h = (\c -> fst (h c), \c -> snd (h c))
 ```
 
-If a category $\mathcal{C}$ has a terminal object and cartesian products, then it has $n$-arity products for all $n$: the terminal object is like the $0$-arity product, in other words the terminal object is a unit for the product (arity is the number of arguments of a function). We would say that $\mathcal{C}$ has *all finite products* and we say that a category is a *cartesian category* if it has all finite products ([[PC]](#PC), page 43). That is, the terminal object $1$ (the unit type `()` in Haskell) is a unit for products, such that for any object $x$ in $\mathcal{C}$ we have $1 \times x \cong x \times 1 \cong x$.
+If a category $ \mathcal{C} $ has a terminal object and cartesian products, then it has $ n $-arity products for all $ n $: the terminal object is like the $ 0 $-arity product, in other words the terminal object is a unit for the product (arity is the number of arguments of a function). We would say that $ \mathcal{C} $ has *all finite products* and we say that a category is a *cartesian category* if it has all finite products ([[PC]](#PC), page 43). That is, the terminal object $ 1 $ (the unit type `()` in Haskell) is a unit for products, such that for any object $ x $ in $ \mathcal{C} $ we have $ 1 \times x \cong x \times 1 \cong x $.
 
-Note: the triangles $\pi_1 \circ h = f$ and $\pi_2 \circ h = g$ are both *choice problems* as introduced in [[CM]](#CM) Article 2.2, page 45.
+Note: the triangles $ \pi_1 \circ h = f $ and $ \pi_2 \circ h = g $ are both *choice problems* as introduced in [[CM]](#CM) Article 2.2, page 45.
 
 More notes in:
 - [[PC]](#PC), Section 2.2.3, page 40
@@ -595,7 +595,7 @@ Similar to the lesson we learned about products, the coproduct is important for 
 
 $$\Hom\mathcal{C}(x + y, a) \cong \Hom\mathcal{C}(x, a) \times \Hom\mathcal{C}(y, a)$$.
 
-Explain the $\times$ instead of a $+$ in the equation above!!!
+Explain the $ \times $ instead of a $ + $ in the equation above!!!
 
 When reading any Haskell book, after fundamental data types -- such as `Void` and `()` -- have been explained, one is introduced to algebraic data type constructors that compose data types to give a new one (such as `Bool = {True, False}`). In this context, without really knowing, one uses coproducts which in computer science are more commonly called *sum types* which are discussed in [Section 6-3](#6-3-sum-types).
 
