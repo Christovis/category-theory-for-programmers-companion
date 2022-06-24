@@ -6,8 +6,8 @@ Releases
 
 This is a work in progress.
 
-* [Part 1](https://github.com/Christovis/category-theory-for-programmers-companion/blob/main/docs/part1.pdf?raw=true)
-* [Part 2](https://github.com/Christovis/category-theory-for-programmers-companion/blob/main/docs/part2.md?raw=true)
+* [Part 1](https://github.com/Christovis/category-theory-for-programmers-companion/blob/main/docs/part1.pdf)
+* [Part 2](https://github.com/Christovis/category-theory-for-programmers-companion/blob/main/docs/part2.md)
 
 Building
 --------
