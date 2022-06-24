@@ -1,4 +1,4 @@
-# A reading companion for \\"[Category Theory for Programmers](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/)"
+# A reading companion for  <br/>"[Category Theory for Programmers](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/)"
 
 These notes serve the following purpose. Firstly, they list and summaries
 important concepts in Category Theory and how they can be expressed in Haskell.
