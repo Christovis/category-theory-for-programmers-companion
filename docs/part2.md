@@ -1,3 +1,11 @@
+---
+title:    "'Category Theory for Programmers' Companion - Part 2"
+author:   Christoph Becker
+date:     "2022-06-24"
+keywords: [Category Theory, Haskell, Functional Programming]
+book:     true
+...
+
 These notes serve the following purpose. Firstly, they list and summaries
 important concepts in Category Theory and how they can be expressed in Haskell.
 Secondly, the book content is compared to other books I am reading in parallel.
@@ -35,15 +43,15 @@ This chapter advances the subjects of *products*, *coproducts*, *terminal* and *
 Remember the definition of a product, which says that, given any pair of maps $(f: C \to X , g: C \to Y)$, there exists a unique map $C \to X \times Y$, such that certain diagrams commute. Such pair of maps is at the heart of unifying terminal objects, products of sets, preorders, categories and more. It therefore deservers another name, $\mathbf{Cone}(X, Y)$, inspired by the diagram such as Figure 5-5-1. Also, remember the definition of a diagram as given in Section 1-1.
 
 > [[SSC]](#SSC), Definition 3.77, page 112:</br>
-> Let $D : \mathscr{J} \to \mathcal{C}$ be a diagram. A *cone* is $(\mathcal{C}, c_*)$ over $D$ consists of</br>
+> Let $D : \mathcal{J} \to \mathcal{C}$ be a diagram. A *cone* is $(\mathcal{C}, c_*)$ over $D$ consists of</br>
 > i) an object $C \in \mathcal{C}$,</br>
-> ii) for each object $j \in \mathscr{J}$, a morphism $c_j: C \to D(j)$.</br>
+> ii) for each object $j \in \mathcal{J}$, a morphism $c_j: C \to D(j)$.</br>
 > To be a cone, these must satisfy the following property:
-> for each $f: j \to k$ in $\mathscr{J}$, we have $c_k = D(f) \circ c_j$.
+> for each $f: j \to k$ in $\mathcal{J}$, we have $c_k = D(f) \circ c_j$.
 >
-> A *morphism of cones* $(C, c_*)$ is a morphism $a: C \to C'$ in $\mathcal{C}$ such that for all $j \in \mathscr{J}$ we have $c_j = c_j' \circ a$. Cones over $D$, and their morphisms, form a category $\mathbf{Cone}(D)$.
+> A *morphism of cones* $(C, c_{\ast})$ is a morphism $a: C \to C'$ in $\mathcal{C}$ such that for all $j \in \mathcal{J}$ we have $c_j = c_j' \circ a$. Cones over $D$, and their morphisms, form a category $\mathbf{Cone}(D)$.
 >
-> The *limit* of $D$, denoted as $\Lim D$, is the terminal object in the category $\mathbf{Cone}(D)$. Say it is the cone $\Lim D = (C, C_*)$; we refer to $C$ as the *limit object* and the map *c_j* for any $j \in \mathscr{J}$ as the $j$th *projection map*.
+> The *limit* of $D$, denoted as $\text{lim} D$, is the terminal object in the category $\mathbf{Cone}(D)$. Say it is the cone $\text{lim} D = (C, C_{\ast})$; we refer to $C$ as the *limit object* and the map $c_j$ for any $j \in \mathcal{J}$ as the $j$th *projection map*.
 
 
 To read more on this in an applied context see [[SSC]](#SSC) Chapter 3 on databases.

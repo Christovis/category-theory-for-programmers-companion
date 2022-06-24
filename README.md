@@ -21,14 +21,8 @@ This is a work in progress.
 Building
 --------
 
-To generate the build scripts provision a cabal sandbox with pandoc in it. This
-is done by the ``write-you-a-haskell.cabal`` and  ``stack.yaml`` files.
-
-**Stack**
-
-```bash
-$ stack exec make
-```
+To generate the build scripts provision a cabal and stack with pandoc in it. This
+is done by the `.cabal` and  `stack.yaml` files.
 
 To generate the pdf, I use the [Eisvogel](https://github.com/Wandmalfarbe/pandoc-latex-template) [Pandoc](https://pandoc.org) [LaTex](https://www.latex-project.org) template. To set up the pandoc and latex environments execute
 
@@ -41,8 +35,8 @@ $ cd /Users/[username]/.pandoc/templates/
 $ cp ~/Documents/Eisvogel-2/eisvogel.latex ./
 ```
 
-Generation of the epub is also supported.
+Generation of the pdf from markdown by executing
 
 ```bash
-$ stack exec make epub
+$ make docs/part1.pdf
 ```

@@ -1,3 +1,11 @@
+---
+title:    "'Category Theory for Programmers' Companion - Part 1"
+author:   Christoph Becker
+date:     "2022-06-24"
+keywords: [Category Theory, Haskell, Functional Programming]
+book:     true
+...
+
 These notes serve the following purpose. Firstly, they list and summaries
 important concepts in Category Theory and how they can be expressed in Haskell.
 Secondly, the book content is compared to other books I am reading in parallel.
@@ -214,6 +222,7 @@ its performance. For instance, try to memoize a function that takes a long
 time to evaluate. You’ll have to wait for the result the first time you call
 it, but on subsequent calls, with the same argument, you should get the result
 immediately.**</br>
+
 Searching the web provided my plenty examples on how to write a Memoization
 function wrapper by hand for specific data types, specifically for Int for
 Fibonacci sequence, but I haven't figured out how to write a short
@@ -227,19 +236,23 @@ More reasons for headaches in Haskell are explained at the beginning of
 
 **2. Try to memoize a function from your standard library that you normally use to
 produce random numbers. Does it work?**</br>
+
 No, if it would work it would be a random number generator.
 
 **3. Most random number generators can be initialized with a seed. Implement a
 function that takes a seed, calls the random number generator with that seed,
 and returns the result. Memoize that function. Does it work?**</br>
+
 Skip
 
 **4. Which of these C++ functions are pure? Try to memoize them and observe what
 happens when you call them multiple times: memoized and not.**</br>
+
 Skip
 
 **5. How many different functions are there from Bool to Bool? Can you implement
 them all?**</br>
+
 There are $2^2$ possible *endomaps* `f: Bool -> Bool` (see [[CM]](#CM), page 34).
 ```haskell
 boolMap1 :: Bool -> Bool
@@ -260,8 +273,8 @@ boolMap4 False = True
 ```
 
 **6. Draw a picture of a category whose only objects are the types `Void`, `()` (unit) and `Bool`; with arrows corresponding to all possible functions between these types. Label the arrows with the names of the functions.**</br>
-<img src="./imgs/challenge_2_7_6.png" alt="Answer to 2.7.6" style="height:200px;"/>
 
+![Answer to 2.7.6](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/challenge_2_7_6.png)
 
 # 3 Categories Great and Small
 ________________________________________________________________________________
