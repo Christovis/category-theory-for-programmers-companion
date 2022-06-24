@@ -17,6 +17,29 @@ This is a work in progress.
 
 * [Part 1](https://github.com/Christovis/category-theory-for-programmers-companion/blob/main/docs/part1.pdf)
 * [Part 2](https://github.com/Christovis/category-theory-for-programmers-companion/blob/main/docs/part2.md)
+* Part 3
+
+Dependencies
+------------
+
+- Homebrew == 3.5.2
+
+To build the documents:
+- Pandoc == 2.18
+    - pandoc-types == 1.22.2
+    - texmath == 0.12.5
+    - skylighting == 0.12.3
+    - citeproc == 0.7
+    - ipynb == 0.2
+    - hslua == 2.2.0
+    - Lua == 5.4
+- pdfTeX 3.141592653-2.6-1.40.24 (TeX Live 2022/Homebrew)
+    - kpathsea version 6.3.4
+- Eisvogel == 2.0.0
+
+To run the code in /src/:
+- GHC == 8.10.7
+
 
 Building
 --------
