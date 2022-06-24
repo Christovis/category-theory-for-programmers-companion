@@ -1,2 +1,1 @@
-# category-theory-for-programmers-companion
-"Category Theory for Programmers" Companion
+# A reading companion for "Category Theory for Programmers"

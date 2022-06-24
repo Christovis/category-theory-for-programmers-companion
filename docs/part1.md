@@ -10,15 +10,15 @@ In composing this text I will follow these rules:
 
 # Table of content
 
-1. [Category: The Essence of Composition](#1-category:-the-essence-of-composition)
-2. [Types and Functions](#2-types-and-functions)
-3. [Categories Great and Small](#3-categories-great-and-small)
-4. [Kleisli Functions](#4-kleisli-functions)
-5. [Products and Coproducts](#5-products-and-coproducts)
-6. [Simple Algebraic Data Types](#6-simple-algebraic-data-types)
-7. [Functors](#7-functors)
-8. [Functoriality](#8-functoriality)
-9. [Function Types](#9-function-types)
+1.  [Category: The Essence of Composition](#1-category:-the-essence-of-composition)
+2.  [Types and Functions](#2-types-and-functions)
+3.  [Categories Great and Small](#3-categories-great-and-small)
+4.  [Kleisli Functions](#4-kleisli-functions)
+5.  [Products and Coproducts](#5-products-and-coproducts)
+6.  [Simple Algebraic Data Types](#6-simple-algebraic-data-types)
+7.  [Functors](#7-functors)
+8.  [Functoriality](#8-functoriality)
+9.  [Function Types](#9-function-types)
 10. [Natural Transformations](#10-natural-transformations)
 
 
@@ -47,7 +47,7 @@ In composing this text I will follow these rules:
 | $\mathbf{Poly}$  |                    |                        |                              |
 | $\mathbf{Cat}$   | categories         | functors               | Action in context, structure |
 
-Table 1-1-1: Some examples of omnipresent categories
+Table 0-1: Some examples of omnipresent categories
 
 In all categories listed in [Talbe 1-1-1](table-1-1-1), the arrows correspond to *structure preserving maps* (which do not necessarily need to be functions, but can be assignments such as numbers to football players). For the application of category theory to Haskell we work with the category $\mathbf{Hask}$ which is a suset of $\mathbf{Set}$ and contains all Haskell types. More on that in [Chapter 2](#2-types-and-functions).
 
@@ -57,18 +57,19 @@ ________________________________________________________________________________
 
 ## 1-1 Arrows as Functions & 1-2 Properties of Composition
 In Haskell functions (`f` and `g`) between objects (`A`, `B` and `C`) and their composition can be declared as
+
 |                      | Mathematical Notation           | Haskell Type Signature           |
-| -------------------- | ------------------------------- | -------------------------------- |
+| ---------------------+---------------------------------+--------------------------------- |
 | functions            | $f: A \to B$ and $g: B \to C$   | `f :: A -> B` and `g :: B -> C`  |
 | function composition | $g \circ f: A \to C$            | `g . f :: A -> C`                |
 | identity function    | $\text{id}_A: A \to A$          | `id :: a -> a` (part of Prelude) |
-Table 1-1-1
+Table 1-1-1: Mappings between objects in their mathematical and Haskell notation.
 
 
 In mathematics in general, and in category theory specifically, a commutative diagram is a diagram such that all directed paths in the diagram with the same start and endpoints lead to the same result.
 
 > [[SSC]](#SSC), Definition 3.42, page 96:</br>
-> A *diagram* $D$ in $\mathcal{C}$ is a functor $D: \mathscr{J} \to \mathcal{C}$ from any category $\mathscr{J}$, called the *indexing category* of the diagram $D$. We say that $D$ *commutes* if $D(f) = D(f')$ holds for every parallel pair of morphisms $f,f': a \to b$ in $\mathscr{J}$.
+> A *diagram* $D$ in $\mathcal{C}$ is a functor $D: \mathcal{J} \to \mathcal{C}$ from any category $\mathcal{J}$, called the *indexing category* of the diagram $D$. We say that $D$ *commutes* if $D(f) = D(f')$ holds for every parallel pair of morphisms $f,f': a \to b$ in $\mathcal{J}$.
 
 ## 1-2 Properties of Composition
 For any category the following rules two apply, which specify it's composability.
@@ -82,8 +83,8 @@ id :: a -> a
 id x = x
 
 f :: A -> B
-f ◦ id == f
-id ◦ f == f
+f . id == f
+id . f == f
 ```
 
 2) Associative Law
@@ -92,7 +93,7 @@ As equality is not defined for functions in Haskell, we can it as pseudo code:
 f :: A -> B
 g :: B -> C
 h :: C -> D
-h ◦ (g ◦ f) == (h ◦ g) ◦ f == h ◦ g ◦ f
+h . (g . f) == (h . g) . f == h . g . f
 ```
 
 ## 1-4 Challenges
@@ -110,10 +111,10 @@ identity x = x
 ```
 Then in terminal enter ghci:
 ```haskell
-λ: :l chapter_1.hs
-λ: compose sqrt sqrt 1.0
+ghci: :l chapter_1.hs
+ghci: compose sqrt sqrt 1.0
 1.0
-λ: compose (+1) (+1) 1.0
+ghci: compose (+1) (+1) 1.0
 3
 ```
 **2. Implement the composition function. It takes two functions as arguments and returns a function that is their composition.**</br>
@@ -126,10 +127,10 @@ compose g f = (g . f)
 ```
 Testing it in ghci should give the same resutls as:
 ```haskell
-λ: :l chapter_1.hs
-λ: compose sqrt sqrt 1.0
+ghci: :l chapter_1.hs
+ghci: compose sqrt sqrt 1.0
 1.0
-λ: compose (+1) (+1) 1.0
+ghci: compose (+1) (+1) 1.0
 3
 ```
 
@@ -292,13 +293,13 @@ As booleans values `True` and `False` can be associated to $1$ and $0$, the bool
 :
 
 **Hom-set**
-: A set of morphisms from object $a$ to object $b$ in a category $\mathcal{C}$ is called a homset and is written as $\mathcal{C}(a,b)$ (or, sometimes,  $\Hom\mathcal{C}(a,b)$).
+: A set of morphisms from object $a$ to object $b$ in a category $\mathcal{C}$ is called a homset and is written as $\mathcal{C}(a,b)$ (or, sometimes,  $\text{hom}\mathcal{C}(a,b)$).
 
 ## 3-4 3-5 Monoid as Set and Category
 
 Monoid are ubiquitous in programming, showing up as `Char`, `List`, recursive data structures, futures in concurrent programming, and so on.
 They are categories, $\mathcal{C}$, with just one object,
-$\ast \in \mathcal{C}$, such that there is only one homset, $\Hom\mathcal{C}(\ast , \ast)$, which is the identity morphism, $\text{id}_{\ast}: \ast \to \ast$. Some refer to a monoid as a singleton category, which acts analogous to a singleton set (which was introduced in [Section 2-6](#2-6-examples-of-types)), meaning that a *functor* (functors are introduced in [Chapte 7](#7-functors)) from a monoid to any other category selects an object in that category.
+$\ast \in \mathcal{C}$, such that there is only one homset, $\text{hom}\mathcal{C}(\ast , \ast)$, which is the identity morphism, $\text{id}_{\ast}: \ast \to \ast$. Some refer to a monoid as a singleton category, which acts analogous to a singleton set (which was introduced in [Section 2-6](#2-6-examples-of-types)), meaning that a *functor* (functors are introduced in [Chapte 7](#7-functors)) from a monoid to any other category selects an object in that category.
 
 Monoidal categories have been used to formalise the use of networks in computation and reasoning—amongst others, applications include circuit diagrams, Markov processes, quantum computation, and dynamical systems.
 
@@ -519,7 +520,7 @@ The table below lists some examples of duality. Most of them weren't introduced 
 Table 5-3-1: Some examples of duality.
 
 Note that monoidal categories, $\mathcal{C}(\ast)$, are equal to their opposite category,
-$\mathcal{C}^{\text{op}}$, as there is only one homset, $\Hom\mathcal{C}(\ast,\ast)$,
+$\mathcal{C}^{\text{op}}$, as there is only one homset, $\text{hom}\mathcal{C}(\ast,\ast)$,
 which is the identity morphism, $\text{id}_{\ast} = \text{id}^{\text{op}}_{\ast}$.
 
 ## 5-4 Isomorphisms
@@ -550,19 +551,19 @@ Spelling this out in words, to say that two functions are equal up to isomorphis
 >
 > Often we just refer to $x \times y$ as the product of $x$
 > and $y$.
-> We call the morphisms $\pi\_1$ and
-> $\pi\_2$ *projection maps* and *h* is frequently denoted as $h = \langle f, g \rangle$.
+> We call the morphisms $\pi_1$ and
+> $\pi_2$ *projection maps* and *h* is frequently denoted as $h = \langle f, g \rangle$.
 >
 > (This definition is basically the same as [[SSC]](#SSC), Definition 3.71, page 110)
 
 Note, that in the definition above the universal property is shown as a dashed line, which is quite common in diagrammatic notations (some also use dotted lines). In terms of Haskell, the cartesian product, $x \times y$,
-is a tuple `(x,y)`, and the two morphisms $\pi\_1$
-and $\pi\_2$ are the function `fst (x,y)` and `snd (x,y)` which are both part of Prelude.
+is a tuple `(x,y)`, and the two morphisms $\pi_1$
+and $\pi_2$ are the function `fst (x,y)` and `snd (x,y)` which are both part of Prelude.
 
 
 The important lesson here, which is useful for thinking about programming, is about solving functions as $h: a \to x \times y$: to compute a cartesian product $x \times y$ we can decompose it into a pair of functions that we can easily solve, $f: a \to x$ and $g: a \to y$. In other words, through the universal property of products we have a one-to-one correspondence between
 
-$$\Hom\mathcal{C}(a, x \times y) \cong \Hom\mathcal{C}(a, x) \times \Hom\mathcal{C}(a, y)$$,
+$$\text{hom}\mathcal{C}(a, x \times y) \cong \text{hom}\mathcal{C}(a, x) \times \text{hom}\mathcal{C}(a, y)$$,
 
 which in Haskell means that `a -> (x,y)` is isomorphic to `(a -> x, a -> y)`.Such decomposition is a common theme in using universal properties for structuring programs. Its helpful to explicitly write down the isomorphism between the two types. In one direction, we have the function `tuple`,
 ```haskell
@@ -610,7 +611,7 @@ In the category of sets, the coproduct is the *disjoint union* of two sets. An e
 
 Similar to the lesson we learned about products, the coproduct is important for solving functions like $h: x + y \to a$: to compute it we can decompose it into a pair of functions that we can solve more easily, $f: x \to a$ and $g: y \to a$. In other words, through the universal property of coproducts we have a one-to-one correspondence between
 
-$$\Hom\mathcal{C}(x + y, a) \cong \Hom\mathcal{C}(x, a) \times \Hom\mathcal{C}(y, a)$$
+$$\text{hom}\mathcal{C}(x + y, a) \cong \text{hom}\mathcal{C}(x, a) \times \text{hom}\mathcal{C}(y, a)$$
 
 Explain the $\times$ instead of a
 $+$ in the equation above!!!
@@ -864,7 +865,7 @@ The way functors relate to each other is known as *natural transformations*.
 >
 > The above constituents must satisfy two properties, 'the functor laws':</br>
 > (a) Preserve identity: for every object $c \in \text{Ob}(\mathcal{C})$, we have $F(\text{id}_c) = \text{id}_{F(c)}$;</br>
-> (b) Preserve composition: for every three objects $c_1, c_2, c_3 \in \text{Ob}(\mathcal{C})$ and two morphisms $f \in \Hom\mathcal{C}(c_1, c_2)$, $g \in \Hom\mathcal{C}(c_2, c_3)$, in other words $f: c_1 \to c_2$ and $g: c_2 \to c_3$ respectively, the equation $F g \circ F f = F(g \circ f)$ holds.
+> (b) Preserve composition: for every three objects $c_1, c_2, c_3 \in \text{Ob}(\mathcal{C})$ and two morphisms $f \in \text{hom}\mathcal{C}(c_1, c_2)$, $g \in \text{hom}\mathcal{C}(c_2, c_3)$, in other words $f: c_1 \to c_2$ and $g: c_2 \to c_3$ respectively, the equation $F g \circ F f = F(g \circ f)$ holds.
 
 There are a number of commonly used functors, which we are going to list here and explain in more detail later:
 
@@ -912,12 +913,12 @@ class Functor f where
 ```
 such that we can rewrite the examples listed above to be an instance of this class. Other means of implementing functors are possible, but this is the most convenient way to do so. An common operation that one uses in many programming languages without referring to it as a functor is `map`:
 ```haskell
-λ> map (\x -> x > 3) [1..6]
+ghci: map (\x -> x > 3) [1..6]
 [False,False,False,True,True,True]
 ```
 which works just as our `Functor` typeclass
 ```haskell
-λ> fmap (\x -> x > 3) [1..6]
+ghci: fmap (\x -> x > 3) [1..6]
 [False,False,False,True,True,True]
 ```
 
@@ -1070,14 +1071,20 @@ ________________________________________________________________________________
 
 Just as one can take the *Cartesian product*, $\times$, for every pair of two objects within one category $\mathcal{A}$, we can also take a product of two categories $F: \mathcal{A} \times \mathcal{B} \to \mathcal{C}$, where $F$ is called a *bifunctor* as it has two arguments (instead of one as a functor has). The product of categories is an important application of bifunctors, but not the only one...
 
-
 > [[CH]](#CH), Definition 3.7, page 34:</br>
 > Given two categories $\mathcal{A}$, $\mathcal{B}$ their *product category* $\mathcal{A} \times \mathcal{B}$ is given by:
-> - The objects $a \in \mathcal{A}$ and $b \in \mathcal{B}$ the bifunctor $F$ produces product-pairs $(a,b)$.
-> - The arrows $g: a \to a'$ in $\mathcal{A}$ and the arrows $h: b \to b'$ in $\mathcal{B}$ combine to pairs as $(g,h): (a,b) \to (a',b')$.
-> - The identity arrwos for $(a,b)$ are the pair $(\text{id}_a, \text{id}_b)$.
-> - Composition of arrows happens per component, i.e. when $g,g' \in \mathcal{A}$ and $h,h' \in \mathcal{B}$:</br>
-> $(g,h) \circ (g',h') \equiv (g \circ g', h \circ h')$
+> - The objects $a \in \mathcal{A}$ and
+> $b \in \mathcal{B}$ the bifunctor
+> $F$ produces product-pairs
+> $(a,b)$.
+> - The arrows $g: a \to a'$ in
+> $\mathcal{A}$ and the arrows
+> $h: b \to b'$ in $\mathcal{B}$ combine to pairs as $(g,h): (a,b) \to (a',b')$.
+> - The identity arrwos for $(a,b)$ are the pair
+> $(\text{id}_a, \text{id}_b)$.
+> - Composition of arrows happens per component, i.e. when $g,g' \in \mathcal{A}$ and
+> $h,h' \in \mathcal{B}$:
+> $$(g,h) \circ (g',h') \equiv (g \circ g', h \circ h')$$
 >
 > [[CH]](#CH), Definition 3.8, page 34:</br>
 > Let $\mathcal{A} , \mathcal{B} , \mathcal{C}$ be categories. A *bifunctor* is a functor:
@@ -1192,7 +1199,7 @@ class Contravariant f where
 $H_F: \mathcal{C} \times \mathcal{D}^{\text{op}} \to \mathbf{Set}$,</br>
 > which can also be written as $F: \mathcal{C} \nrightarrow \mathcal{D}$.
 
-A endo-profunctor is $H_F: \mathcal{C} \times \mathcal{C}^{\text{op}} \to \mathbf{Set}$, which generalizes hom-functors $\Hom\mathcal{C}: \mathcal{C} \times \mathcal{C}^{\text{op}} \to \mathbf{Set}$, which will be discussed more in the next section.
+A endo-profunctor is $H_F: \mathcal{C} \times \mathcal{C}^{\text{op}} \to \mathbf{Set}$, which generalizes hom-functors $\text{hom}\mathcal{C}: \mathcal{C} \times \mathcal{C}^{\text{op}} \to \mathbf{Set}$, which will be discussed more in the next section.
 
 Profunctors can generalize functors.
 
@@ -1383,7 +1390,7 @@ Skip
 # 9 Function Types
 ________________________________________________________________________________
 
-Function types can also be seen as existing in sets, such that $\Hom\mathcal{C}(a,b) \in \mathbf{Set}$. Since we can talk of functions as being sets themselves, we can reinterpret $z(a)$ as a product of two sets $z \times a$, and instead of writing $z: a \to b$ we have another function $g$ that acts on the product as $g: z \times a \to b$.
+Function types can also be seen as existing in sets, such that $\text{hom}\mathcal{C}(a,b) \in \mathbf{Set}$. Since we can talk of functions as being sets themselves, we can reinterpret $z(a)$ as a product of two sets $z \times a$, and instead of writing $z: a \to b$ we have another function $g$ that acts on the product as $g: z \times a \to b$.
 
 Haskell is build around this conception and you can read more about the practical side in [[RWH]](#RWH) Section "Functions Are Data, Too" page 303.
 
@@ -1402,7 +1409,7 @@ Since these universal properties are so central to type and category theory, cor
 
 
 In this section, the important lesson is that functions between two sets, $z: a \to b$, can be understood as another set living in the category of Haskell types, $\mathbf{Hask}$. This perspective uses three objects:
-- function type, $z = \Hom\mathcal{C}(a,b)$, which is an object containing a function $f$
+- function type, $z = \text{hom}\mathcal{C}(a,b)$, which is an object containing a function $f$
 - argument type, $a$, which is an object containing an element $x$, and
 - result type, $b$, which is an object containing an element, $f(x)$
 
@@ -1437,17 +1444,17 @@ More notes on exponentials:
 
 ## 9-3 Exponentials
 
-The function type, $z = \Hom\mathcal{C}(a,b)$, which can be mapped to $(a \implies b)$ is often called the *exponential*, denoted as $b^a$. Just as products satisfy the universal property (see [Section 5-5](#5-5-products))
+The function type, $z = \text{hom}\mathcal{C}(a,b)$, which can be mapped to $(a \implies b)$ is often called the *exponential*, denoted as $b^a$. Just as products satisfy the universal property (see [Section 5-5](#5-5-products))
 
-$$\Hom\mathcal{C}(a, x \times y) \cong \Hom\mathcal{C}(a, x) \times \Hom\mathcal{C}(a, y)$$,
+$$\text{hom}\mathcal{C}(a, x \times y) \cong \text{hom}\mathcal{C}(a, x) \times \text{hom}\mathcal{C}(a, y)$$,
 
 and coproducts satisfy the universal property (see [Section 5-6](#5-6-coproduct))
 
-$$\Hom\mathcal{C}(x + y, a) \cong \Hom\mathcal{C}(x, a) \times \Hom\mathcal{C}(y, a)$$.
+$$\text{hom}\mathcal{C}(x + y, a) \cong \text{hom}\mathcal{C}(x, a) \times \text{hom}\mathcal{C}(y, a)$$.
 
 exponential satisfy the universal property (using Definition 5.1 from the previous Section)
 
-$$\Hom\mathcal{C}(x \times y, a) \cong \Hom\mathcal{C}(x, a^y)$$.
+$$\text{hom}\mathcal{C}(x \times y, a) \cong \text{hom}\mathcal{C}(x, a^y)$$.
 
 > [[PC]](#PC), Definition 2.57, page 58:</br>
 > Let $A, B \in \mathcal{C}$ be objects in a cartesian category. An object $B^A$, equipped with a morphism $\text{eval}_{A,B}: B^A \times A \to B$, is called an *exponential* or *function object/type* for morphisms $A$ to $B$ if it has the following universal property:
@@ -1498,7 +1505,7 @@ We talked about functors as a means of lifting functions over structure so that 
 
 > [[CH]](#CH), Definition 1.10, page 15:</br>
 > Let $\mathcal{C}$ and $\mathcal{D}$ be categories, and let $F,G: \mathcal{C} \to \mathcal{D}$ be two functors. A *natural transformation* $\alpha$ from $\mathcal{C}$ to $\mathcal{D}$, is a set of morphisms:</br>
-> $\alpha = \{\alpha_a: Fa \to Ga \, | \, a \in \Ob(\mathcal{C}) \}$,</br>
+> $\alpha = \{\alpha_a: Fa \to Ga \, | \, a \in \text{Ob}(\mathcal{C}) \}$,</br>
 > indexed by objects in $\mathcal{C}$, so that for all morphisms $f: a \to b$ the diagram:</br>
 > <img src="./imgs/definition_10_0_natural_trans.png" alt="Answer to 2.7.6" style="height:200px;"/>
 Figure 10-0-1
@@ -1543,7 +1550,7 @@ Since all standard algebraic data types are functors, any polymorphic function b
 
 As mentioned in the introduction to this chapter, just as functions form a set, functors form a category.
 
-The cool thing is, just as the exponential $z = \Hom\mathcal{C}(a,b)$ is a set of morphisms between two sets in the same category, do the functors from $\mathcal{C} \implies \mathcal{D}$ form a category. And we can compose those categories of functor! Let $\alpha: \mathcal{C} \implies \mathcal{D}$ and $\beta: \mathcal{D} \implies \mathcal{E}$, then we have $\alpha \circ \beta: \mathcal{C} \implies \mathcal{E}$, defined by $(\alpha_a \circ \beta_a) = \alpha_a \circ \beta_a$.
+The cool thing is, just as the exponential $z = \text{hom}\mathcal{C}(a,b)$ is a set of morphisms between two sets in the same category, do the functors from $\mathcal{C} \implies \mathcal{D}$ form a category. And we can compose those categories of functor! Let $\alpha: \mathcal{C} \implies \mathcal{D}$ and $\beta: \mathcal{D} \implies \mathcal{E}$, then we have $\alpha \circ \beta: \mathcal{C} \implies \mathcal{E}$, defined by $(\alpha_a \circ \beta_a) = \alpha_a \circ \beta_a$.
 
 
 So let's recap what a category is made up of:
