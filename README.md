@@ -1,4 +1,13 @@
-# A reading companion for "[Category Theory for Programmers](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/)"
+# A reading companion for \\"[Category Theory for Programmers](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/)"
+
+These notes serve the following purpose. Firstly, they list and summaries
+important concepts in Category Theory and how they can be expressed in Haskell.
+Secondly, the book content is compared to other books I am reading in parallel.
+
+In composing this text I will follow these rules:
+- Notes: are for references to other books and papers
+- Bold font: is for definitions and questions of challenges
+- Italic: If things that still need to be defined appear in text
 
 
 Releases
