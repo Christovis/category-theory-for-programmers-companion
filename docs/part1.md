@@ -337,17 +337,17 @@ Monoidal categories have been used to formalise the use of networks in computati
 **1. Generate a free category from:**
 - a) A graph with one node and no edges
 
-<img src="./imgs/challenge_3_6_1_a.png" alt="Answer to 3.6.1.a" style="height:70px;"/>
+![Answer to 3.6.1.a](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/challenge_3_6_1_a.png)
 
 However I am not quite sure about this answer, because [[CM]](#CM) speaks of interla morphisms on page 30.
 
 - b) A graph with one node and one (directed) edge (Hint: this edge can be composed with itself)
 
-<img src="./imgs/challenge_3_6_1_b.png" alt="Answer to 3.6.1.b" style="height:70px;"/>
+![Answer to 3.6.1.b](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/challenge_3_6_1_b.png)
 
 - c) A graph with two nodes and a single arrow between them
 
-<img src="./imgs/challenge_3_6_1_c.png" alt="Answer to 3.6.1.c" style="height:70px;"/>
+![Answer to 3.6.1.c](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/challenge_3_6_1_c.png)
 
 - d) A graph with a single node and 26 arrows marked with the
 letters of the alphabet: a, b, c ... z.
@@ -491,8 +491,7 @@ Before jumping into the chapter let's make clear that a *universal property/cons
 
 > [[CH]](#CH) Definition 1.3, page 13:
 > An object $t \in \mathcal{C}$ is terminal if for all $a \in \mathcal{C}$ there is [a unique morphism $!: a \to t$]. Similarly, $i \in \mathcal{C}$ is the initial if there [a unique morphism $!: i \to a$] to all objects.</br>
-> <img src="./imgs/definition_5_1_initial_terminal_objects.png" alt="Definition of the initial and terminal object in 'Categories and Haskell'" style="height:100px;"/>
-> Figure 5-1-1
+> ![Figure 5-1-1: Definition of the initial and terminal object in 'Categories and Haskell'](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/definition_5_1_initial_terminal_objects.png)
 
 Within the Haskell type system, $\mathbf{Hask}$, `Void` takes the place of the inital objects which maps to every other type through `absurd`, `absurd: Void -> a`, and unit `()` takes is the terminal object as everything can uniquly map onto it, `unit: a -> ()`. However, the terminal object does not need to be `()` but could be any singleton set.
 
@@ -559,8 +558,7 @@ Spelling this out in words, to say that two functions are equal up to isomorphis
 >
 > with the following *universal property*: For any other such three things, i.e. for any object $a$ and morphisms $f: a \to x$ and $g: a \to y$, there is a unique morphism $h: a \to x \times y$ such that the following diagram commutes:
 >
-> <img src="./imgs/definition_5_5_products.png" alt="Definition of products from 'Programming with Categories'" style="height:150px;"/>
-> Figure 5-5-1
+> ![Figure 5-1-1: efinition of products from 'Programming with Categories'](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/definition_5_5_products.png)
 >
 > Often we just refer to $x \times y$ as the product of $x$
 > and $y$.
@@ -615,8 +613,7 @@ In the category of sets, the coproduct is the *disjoint union* of two sets. An e
 > $y$ is an object, denoted as $x+y$, together with two morphisms
 > $i_1: x \to x+y$ and $i_2: y \to x+y$, such that for any object $a$ and morphisms $f: x \to a$ and $g: y \to a$, there is a unique morphism $h: x+y \to a$ such that the following diagram commutes:
 >
-> <img src="./imgs/definition_5_6_coproducts.png" alt="Definition of coproducts from 'Programming with Categories'" style="height:150px;"/>
-> Figure 5-6-1
+> ![Figure 5-6-1: Definition of coproducts from 'Programming with Categories'](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/definition_5_6_coproducts.png)
 >
 > We call the morphisms $i_1$ and $i_2$ *inclusion maps*. We will frequently denote $h$ by $h=[f,g]$, and call it the *copairing* of $f$ and $g$.
 >
@@ -670,7 +667,7 @@ This mean must must mean that $f \circ g = 1_{S_1}$ and $g \circ f = 1_{S_2}$ ar
 Hint: Use the universal construction.**</br>
 Thus our two objects $x$ and $y$ are in the *partial order* category, which uses $\leq$ as it's arrows. Drawing the product diagram helps to find the answer,
 
-<img src="./imgs/challenge_5_8_2.png" alt="Product diagram for Challenge 5.8.2" style="height:150px;"/>
+![Product diagram for Challenge 5.8.2](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/challenge_5_8_2.png)
 
 it is useful to know that divisibility relation defines partial ordering on positive integers
 
@@ -1119,8 +1116,8 @@ with the bifunctor `f` being type constructor that takes two arguments. Notice t
 - implement everything: `bimap`, `first`, and `second`.
 
 This Haskell implementation of a bifunctor can be sketched as,</br>
-<img src="./imgs/definition_8_1_bifunctors.png" alt="Definition of a Bifunctor in Haskell" style="height:150px;"/>
-Figure 8-1-1
+
+![Figure 8-1-1: Definition of a Bifunctor in Haskell](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/definition_8_1_bifunctors.png)
 
 Here, I have given different labels to the three categories involved in the bifunctor mapping. However, as Bartosz states on page 92, when implementing concepts from category theory in Haskell we are bound by $\mathbf{Hask}$ such that we effectively always use endofunctors, meaning $\mathbf{Hask} \times \mathbf{Hask} \to \mathbf{Hask}$.
 
@@ -1246,29 +1243,39 @@ For additional credit implement all three methods of `Bifunctor` and use equatio
 As Bartosz mentioned earlier: "you may even view the built-in `Pair` type as a variation on this kind of declaration, where the name `Pair` is replaced with the binary operator `(,)`." An example implementation of `(,)` was given on page 117.
 
 To implement this bifunctor we have three options:
+
 - i) implementing only `bimap` and accepting the defaults for `first` and `second`
+
     ```haskell
     instance Bifunctor Pair where
         bimap g h (Pair a b) = Pair (g a) (h b)
     ```
+
     * Identity law
     * Associative law
+
 - ii) implementing `first` and `second` and accepting the default of `bimap`
+
     ```haskell
     instance Bifunctor Pair where
         first g (Pair a b) = Pais (g a) b
         second h (Pair a b) = Pair a (h b)
     ```
+
     * Identity law
     * Associative law
+
 - iii) implementing all three: `bimap`, `first`, and `second`
+
     ```haskell
     instance Bifunctor Pair where
         bimap g h (Pair a b) = Pair (g a) (h b)
         first g (Pair a b) = Pais (g a) b
         second h (Pair a b) = Pair a (h b)
     ```
+
     * Identity laws
+
         ```haskell
         bimap ida idb (Pair a b) = Pair (ida a) (idb b)
                                  = Pair a b
@@ -1279,7 +1286,9 @@ To implement this bifunctor we have three options:
         second idb (Pair a b) = Pair a (idb b)
                               = Pair a b
         ```
+
     * Composition laws
+
         ```haskell
         bimap (g . h) (g' . h') (Pair a b) = Pair ((g . g') a) ((h . h') b)
                                            = Pair (g (g' a)) (h (h' b))
@@ -1310,6 +1319,7 @@ For additional credit, show that they are the inverse of each other using equati
 This exercise is an extension of Exercise 2 in [Section 6-5](#6-5-challenges).
 
 Even though `Const` is a bifunctor, we implement it as a functor since it's always partially applied
+
 ```haskell
 data Const c x = Const c
 
@@ -1318,6 +1328,7 @@ fmap _ (Const v) = Const v
 ```
 
 also remember the other types needed for this exercise,
+
 ```haskell
 data Identity x = Identity x
 data Either x y = Left x | Right y
@@ -1325,6 +1336,7 @@ data Maybe x = Just x | Nothing
 ```
 
 Thus we can implement `maybeToEither: Maybe -> Maybe'` and `eitherToMaybe: Maybe' -> Maybe` as
+
 ```haskell
 maybeToEither :: Maybe a -> Either (Const () a) (Identity a)
 maybeToEither Nothing  = Left (Const ())
@@ -1336,6 +1348,7 @@ eitherToMaybe (Right (Identity x)) = Just x
 ```
 
 To prove the isomorphism we have to show that `maybeToEither . eitherToMaybe = maybeID` and `eitherToMaybe . maybeToEither = eitherID`, meaning we should obtain what we put in.
+
 ```haskell
 (maybeToEither . eitherToMaybe) (Left (Const ())) = maybeToEither Nothing
                                                   = Left (Const ())
@@ -1360,14 +1373,17 @@ Show that `PreList` is a bifunctor.**
 
 
 First we must implement `PreList` as an instance of `Bifunctor`, which I do through `bimap` and accept the defaults of `first` and `second`,
+
 ```haskell
 instance Bifunctor PreList where
     bimap g h Nil        = Nil
     bimap g h (Cons a b) = Cons (g a) (h b)
 ```
+
 To show that this `Bifunctor` instance of `PreList` behaves like a bifunctor, we need to show it fulfils the bifunctor identity and composition laws.
 
 - Identity laws:
+
     ```haskell
     bimap ida idb Nil = Nil
 
@@ -1375,6 +1391,7 @@ To show that this `Bifunctor` instance of `PreList` behaves like a bifunctor, we
                              = Cons a b
     ```
 - Composition laws:
+
     ```haskell
     bimap (g . h) (g' . h') Nil = Nil
                                 = bimap g h (bimap g' h' Nil)
@@ -1427,8 +1444,8 @@ In this section, the important lesson is that functions between two sets, $z: a 
 - result type, $b$, which is an object containing an element, $f(x)$
 
 which are composed through *function application*/*evaluation*. As mentioned in the introduction to this chapter, since $z: a \to b$ can be thought of a set of morphisms $z$ projecting a set $a$ to set $b$, we can rewrite it using the *functoriality of the product*, $z \times a \to b$. However, similar to the product of sets, there can be multiple morphisms, e.g., $z \times a \to b$ and $z' \times a \to b$ related by $\lambda g \times \text{id}_a$. However, only one is the 'ideal' morphism, the from an initial object denoted as $(a \implies b) \times a$ to $b$,</br>
-<img src="./imgs/definition_9_1_function_sets.png" alt="Definition of functions as sets" style="height:100px;"/>
-Figure 9-1-1
+
+![Figure 9-1-1: Definition of functions as sets](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/definition_9_1_function_sets.png)
 
 where $\text{eval}^a_b: ((a \implies b) \times a) \to b$ and $\lambda g: z \to (a \implies b)$ factorise $g = \text{eval}^a_b \circ (\lambda g \times \text{id}_a)$. Regarding $\lambda g$, notice that it returns a function, thus making it a higher-order function.
 
@@ -1520,8 +1537,8 @@ We talked about functors as a means of lifting functions over structure so that 
 > Let $\mathcal{C}$ and $\mathcal{D}$ be categories, and let $F,G: \mathcal{C} \to \mathcal{D}$ be two functors. A *natural transformation* $\alpha$ from $\mathcal{C}$ to $\mathcal{D}$, is a set of morphisms:</br>
 > $\alpha = \{\alpha_a: Fa \to Ga \, | \, a \in \text{Ob}(\mathcal{C}) \}$,</br>
 > indexed by objects in $\mathcal{C}$, so that for all morphisms $f: a \to b$ the diagram:</br>
-> <img src="./imgs/definition_10_0_natural_trans.png" alt="Answer to 2.7.6" style="height:200px;"/>
-Figure 10-0-1
+>
+> ![Figure 10-0-1: Answer to 2.7.6](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/definition_10_0_natural_trans.png)
 >
 > commutes. The red square diagram inside $\mathcal{D}$ is called the *naturality square* or *naturality condition*,</br>
 > $Gf \circ \alpha_a = \alpha_b \circ Ff$.</br>
@@ -1530,6 +1547,7 @@ Figure 10-0-1
 As mentioned earlier, we can't implement concepts from category theory one-to-one in Haskell. Thus, also for the natural condition we only define  the category of functors, one for every type, since Haskell can't proof the naturality condition.
 
 In Haskell, one kind of natural transformation is implement in the `natural-transformation` package, which transforms a container type `f a` into another container `g a`,
+
 ```haskell
 {-# LANGUAGE RankNTypes #-}
 
@@ -1546,12 +1564,15 @@ Read more in:
 Natural transformation are secretly at the heart of polymorphic functions. Infact, a natural transformation is a polymorphic function.
 
 A first example of a natural transformation is the Exercises 4.1.1 in [[RWH]](#RWH) on list operations, such as `safeHead` which is a function polymorphic in `a`,
+
 ```haskell
 safeHead :: [a] -> Maybe a
 safeHead [] = Nothing
 safeHead (x:xs) = Just x
 ```
+
 which needs to satisfy the naturality condition
+
 ```haskell
 fmap f . safeHead = safeHead . fmap f
 ```
@@ -1597,69 +1618,90 @@ No reading among my references on this topic.
 **1. Define a natural transformation from the `Maybe` functor to the `List` functor. Prove the naturality condition for it.**</br>
 
 So this is the opposite way around than was given as an example.
+
 ```haskell
 alpha :: Maybe a -> [a]
 alpha Nothing = []
 alpha (Just x) = [x]
 ```
+
 To prove the naturality condition through equational reasoning we have two cases to consider. Firstly, `Nothing`:
+
 ```haskell
 fmap f . alpha Nothing = fmap f Nil
                        = Nil
                        = alpha Nothing
                        = alpha . fmap f Nothing
 ```
+
 Secondly, `Just x`:
+
 ```haskell
 fmap f . alpha (Just x) = fmap f (Cons a (List a))
                       = f (Cons a (List a))
                       = alpha (Just (f x))
                       = alpha . fmap f (Just x)
 ```
+
 Thus is both cases we have shown that `fmap f . alpha = alpha . fmap f`.
 
 
 **2. Define at least two different natural transformations between `Reader ()` and the list functor. How many different lists of `()` are there?**</br>
 Remember the `Reader` functor from [Sections 7.1](#7-1-functors-in-programming), which is implemented in Haskell as:
+
 ```haskell
 instance Functor ((->) r) where
     fmap f g = f . g
 ```
+
 However, in this chapter the `Reader` functor was implemented differently and we use the following definition
+
 ```haskell
 newtype Reader e a = Reader (e -> a)
 
 instance Functor (Reader e) where
     fmap f (Reader g) = Reader (\x -> f (g x))
 ```
+
 , which actually is pretty much the same as the original definition...
 
 Thus, we are aked to find two different netural transformations between `Reader () -> List a`, where the `List` container was defined as
+
 ```haskell
 data List a = Nil | Cons a (List a)
 ```
+
 Thus, the natural transformation $\alpha$ is of the form
+
 ```haskell
 alpha :: Reader () a -> List a
 ```
+
 As Bartosz mentioned on page 165 "There are only two of these, `dumb` and `obvious`",
+
 ```haskell
 dumb :: Reader () a -> List a
 dumb (Reader _) = Nil
 ```
+
 Verifying naturality condition through equational reasoning again
+
 ```haskell
 fmap f . dumb (Reader g) = fmap f Nil
                          = Nil
                          = dumb (Reader (f . g))
                          = dumb . fmap f (Reader g)
 ```
+
 And for the other one
+
 ```haskell
 obvious :: Reader () a -> List a
 obvious (Reader g) = Cons g a (List g a)
 ```
+
 Verifying naturality condition through equational reasoning again
+
 ```haskell
                             -- definition of obvious
 fmap f . obvious (Reader g) = fmap f (Cons g a (List g a))
@@ -1685,11 +1727,14 @@ double (Reader g) = [g (), g ()]
 **5. Write a short essay about how you may enjoy writing down the evident diagrams needed to prove the interchange law.**</br>
 
 **6. Create a few test cases for the opposite naturality condition of transformations between different `Op` functors. Here’s one choice:**
+
 ```haskell
 op :: Op Bool Int
 op = Op (\x -> x > 0)
 ```
+
 **and**
+
 ```haskell
 f :: String -> Int
 f x = read x
