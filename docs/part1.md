@@ -43,21 +43,21 @@ In composing this text I will follow these rules:
 
 | Category           | Objects            | Arrows                 | Notes                        |
 | ------------------ | ------------------ | ---------------------- | ---------------------------- |
-| $\mathbf{Hask}$  | types              | maps                   |                              |
-| $\mathbf{Set}$   | sets               | maps                   |                              |
-| $\mathbf{Mon}$   | monoids            | functors               | Action                       |
-| $\mathbf{Grph}$  | graphs             |                        | Connection                   |
-| $\mathbf{Meas}$  | measure spaces     |                        | Amount                       |
-| $\mathbf{Top}$   | topological spaces | continuous functions   | Neighborhood                 |
-| $\mathbf{Vect}$  | vector spaces      | linear transformations |                              |
-| $\mathbf{Grp}$   | groups             | group homomorphisms    | Reversable action, symmetry  |
-| $\mathbf{Para}$  |                    |                        |                              |
-| $\mathbf{Poly}$  |                    |                        |                              |
-| $\mathbf{Cat}$   | categories         | functors               | Action in context, structure |
+| $\mathbf{Hask}$    | types              | maps                   |                              |
+| $\mathbf{Set}$     | sets               | maps                   |                              |
+| $\mathbf{Mon}$     | monoids            | functors               | Action                       |
+| $\mathbf{Grph}$    | graphs             |                        | Connection                   |
+| $\mathbf{Meas}$    | measure spaces     |                        | Amount                       |
+| $\mathbf{Top}$     | topological spaces | continuous functions   | Neighborhood                 |
+| $\mathbf{Vect}$    | vector spaces      | linear transformations |                              |
+| $\mathbf{Grp}$     | groups             | group homomorphisms    | Reversable action, symmetry  |
+| $\mathbf{Para}$    |                    |                        |                              |
+| $\mathbf{Poly}$    |                    |                        |                              |
+| $\mathbf{Cat}$     | categories         | functors               | Action in context, structure |
 
 Table 0-1: Some examples of omnipresent categories
 
-In all categories listed in [Talbe 1-1-1](table-1-1-1), the arrows correspond to *structure preserving maps* (which do not necessarily need to be functions, but can be assignments such as numbers to football players). For the application of category theory to Haskell we work with the category $\mathbf{Hask}$ which is a suset of $\mathbf{Set}$ and contains all Haskell types. More on that in [Chapter 2](#2-types-and-functions).
+In all categories listed in [Talbe 1-1-1](table-1-1-1), the arrows correspond to *structure preserving maps* (which do not necessarily need to be functions, but can be assignments such as numbers to football players). For the application of category theory to Haskell we work with the category $\mathbf{Hask}$ which is a subset of $\mathbf{Set}$ and contains all Haskell types. More on that in [Chapter 2](#2-types-and-functions).
 
 # 1 Category: The Essence of Composition
 ________________________________________________________________________________
@@ -191,10 +191,12 @@ In programming language, types are sets (often bounded by their bit range)!
 
 **`Unit` Type for the Singleton Set**
 : A singleton set contains only on object, such as `44` or `('a', 'b')`. Whatever is being fed into a singleton set returns always this one object,
+
 ```haskell
 f44 :: a -> Integer
 f44 _ = 44
 ```
+
 > [[CM]](#CM), page 19:<br/>
 > A singleton is also called a *point* or *one-element set*, since when it appears in composition, it focuses the preceding mappings to a single point projection.
 
@@ -254,6 +256,7 @@ Skip
 them all?**</br>
 
 There are $2^2$ possible *endomaps* `f: Bool -> Bool` (see [[CM]](#CM), page 34).
+
 ```haskell
 boolMap1 :: Bool -> Bool
 boolMap1 True = True
