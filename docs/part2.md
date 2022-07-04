@@ -42,7 +42,8 @@ This chapter advances the subjects of *products*, *coproducts*, *terminal* and *
 
 Remember the definition of a product, which says that, given any pair of maps $(f: C \to X , g: C \to Y)$, there exists a unique map $C \to X \times Y$, such that certain diagrams commute. Such pair of maps is at the heart of unifying terminal objects, products of sets, preorders, categories and more. It therefore deservers another name, $\mathbf{Cone}(X, Y)$, inspired by the diagram such as Figure 5-5-1. Also, remember the definition of a diagram as given in Section 1-1.
 
-> [[SSC]](#SSC), Definition 3.77, page 112:</br>
+> [[SSC]](#SSC), Definition 3.77, page 112: Cone and Limits
+>
 > Let $D : \mathcal{J} \to \mathcal{C}$ be a diagram. A *cone* is $(\mathcal{C}, c_*)$ over $D$ consists of</br>
 > i) an object $C \in \mathcal{C}$,</br>
 > ii) for each object $j \in \mathcal{J}$, a morphism $c_j: C \to D(j)$.</br>
@@ -71,11 +72,12 @@ Three important examples of limits are:
 - equalizer
 - pullback
 
-<img src="./imgs/diagrams_12_2_of_example_limits.png" alt="Diagrams of product, equalizer, and pullback" style="height:200px;"/>
-Figure 12-1-1
+![Figure 12-1-1: Diagrams of product, equalizer, and pullback"](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/diagrams_12_2_of_example_limits.png)
 
 More notes in:
+
 - [[SSC]](#SSC), Section 3.5, page 108
+
 - [[CH]](#CH), Section 8.5, page 89
 
 ## 12-3 Colimits
@@ -86,27 +88,30 @@ The dual of the pullback is called the pushout. It’s based on a diagram called
 
 ## 12-4 Continuity
 
+The actual definition of a *continuous functor* $\mathcal{F}$ from a category $\mathcal{C}$ to $\mathcal{C}'$ includes the requirement that the functor preserve limits. Continuous functors are of most relevant for topological spaces
+
+The continuous functor is defined in Definition 7.17 in [[SSC]](#SSC), page 232, but through a discussion of *topological spaces*
+
 ## 12-5 Challenges
 
 **1. How would you describe a pushout in the category of `C++` classes?**
 
 Skip
 
-**2. Show that the limit of the identity functor `Id:: C -> C` is the initial object.**
+**2. Show that the limit of the identity functor is the initial object.**
 
-Answers:
-- Theorem 3.3 in https://ncatlab.org/nlab/show/initial+object
-- https://math.stackexchange.com/questions/1870077/initial-object-is-limit-of-identity-functor-converse
-- https://math.stackexchange.com/questions/3060504/proof-for-limit-of-the-identity-functor-id-∷-c-→-c-is-the-initial-object
+> Answers:
+> - Theorem 3.3 in https://ncatlab.org/nlab/show/initial+object
+> - https://math.stackexchange.com/questions/1870077/initial-object-is-limit-of-identity-functor-converse
 
 **3. Subsets of a given set form a category. A morphism in that category is defined to be an arrow connecting two sets if the first is the subset of the second. What is a pullback of two sets in such a category? What’s a pushout? What are the initial and terminal objects?**
 
 **4. Can you guess what a coequalizer is?**
 
-Answers:
-- [[SSC]](#SSC), Example 6.37, page 193
-- https://ncatlab.org/nlab/show/coequalizer
-- https://en.wikipedia.org/wiki/Coequalizer
+> Answers:
+> - [[SSC]](#SSC), Example 6.37, page 193
+> - https://ncatlab.org/nlab/show/coequalizer
+> - https://en.wikipedia.org/wiki/Coequalizer
 
 Remark 2.3. By formal duality, a coequalizer in $\mathcal{C}$ is equivalently an equalizer in the opposite category $\mathcal{C}^{\text{op}}$.
 
@@ -114,11 +119,13 @@ Remark 2.3. By formal duality, a coequalizer in $\mathcal{C}$ is equivalently an
 
 **6. Similarly, show that a pushout from an initial object (if one exists) is the coproduct.**
 
-- Answers:
-- - [[SSC]](#SSC), Proposition 6.28, page 191
+> Answers:
+> - [[SSC]](#SSC), Proposition 6.28, page 191
 
 # 13 Free Monoids
 ________________________________________________________________________________
+
+This chapter continuous our discussion of monoids which we started in Sec. 3-4 & 3-5.
 
 ## 13-1 Free Monoid in Haskell
 
@@ -140,15 +147,58 @@ instance Monoid [a] where
 
 ## 13-2 Free Monoid Universal Construction
 
+From many categories representing 'sets with added structure' (groups, monoids, vector spaces, rings, topological spaces, ...) there is a *forgetful functor* going to $\mathbf{Set}$, where objects are sent to their underlying sets.
+
+As an additional example, there is also a forgetful functor $F : \mathbf{Cat} \to \mathbf{Grph}$, sending each category to the graph defined by its objects and arrows.
+
+A functor between monoids is called a monoid homomorphism.
+
+> [[PC]](#PC), Example 3.4, page 68: Monoid homomorphis
+>
+> Consider the monoids $\mathcal{Z}_{\times} (\mathcal{Z}, 1, \times)$ and $\mathcal{B}_{\text{AND}} (\mathcal{B}, \text{true}, \text{AND})$. Let `is_odd:` $\mathcal{Z} \to \mathcal{B}$ be the function that sends odd numbers to `true` and even numbers to `false`. This is a monoid homomorphism. It preserves identities because $1$ is odd, and it preserves composition because the product of any two odd numbers is odd, but the product of anything with an even number is even.
+
+More on *monoid homomorphisms*:
+
+- [[PC]](#PC), Sec. 3.2.2, page 68
+
 ## 13-3 Challenges
 
-**1. You might think (as I did, originally) that the requirement that a homomorphism of monoids preserve the unit is redundant. After all, we know that for all `a`
-```
-h a * h e = h (a * e) = h a
-```
-So `h e` acts like a right unit (and, by analogy, as a left unit). The problem is that `h a`, for all `a` might only cover a sub-monoid of the target monoid. There may be a "true" unit outside of the image of `h`. Show that an isomorphism between monoids that preserves multiplication must automatically preserve unit.**
+**1. You might think (as I did, originally) that the requirement that a homomorphism of monoids preserve the unit is redundant. After all, we know that for all `a` we have `h a * h e = h (a * e) = h a`. So `h e` acts like a right unit (and, by analogy, as a left unit). The problem is that `h a`, for all `a` might only cover a sub-monoid of the target monoid. There may be a "true" unit outside of the image of `h`. Show that an isomorphism between monoids that preserves multiplication must automatically preserve unit.**
 
-**2. Consider a monoid homomorphism from lists of integers with concatenation to integers with multiplication. What is the image of the empty list `[]`? Assume that all singleton lists are mapped to the integers they contain, that is `[3]` is mapped to `3`, etc. What’s the image of `[1, 2, 3, 4]`? How many different lists map to the integer 12? Is there any other homomorphism between the two monoids?**
+**2. Consider a monoid homomorphism from lists of integers with concatenation to integers with multiplication. What is the image of the empty list `[]`?**
+
+We understand "image" as being a, e.g., objects, set, etc. in another category into which it is brought through a functor.
+
+This question connects to the example mentioned on page 215:
+```haskell
+[2] ++ [3] = [2, 3]
+2*3=6
+```
+Answer: the image of `[]` is $0$.
+
+**Assume that all singleton lists are mapped to the integers they contain, that is `[3]` is mapped to `3`, etc. What’s the image of `[1, 2, 3, 4]`?**
+
+$$ 1 \times 2 \times 3 \times 4 = 24$$
+
+**How many different lists map to the integer 12?
+
+$$ 1 \times 12 = 12$$
+$$ 1 \times 2 \times 6 = 12$$
+$$ 1 \times 3 \times 4 = 12$$
+
+Leading to the following lists on the codomain of the monoidal homomorphism
+```
+[12]
+[2,6]
+[3,4]
+[1,12]
+[1,2,6]
+[1,3,4]
+```
+
+**Is there any other homomorphism between the two monoids?**
+
+The two monoids are: a) lists of integers with concatenation `M(Int, , ++)` b) integers with multiplication `M(Int, , *)`
 
 **3. What is the free monoid generated by a one-element set? Can you see what it’s isomorphic to?**
 
@@ -158,6 +208,10 @@ ________________________________________________________________________________
 ## 14-1 The Hom Functor
 
 ## 14-2 Representable Functors
+
+More reading:
+
+- [[PC]](#PC), Section 3.6, page 92
 
 ## 14-3 Challenges
 

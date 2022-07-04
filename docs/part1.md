@@ -37,23 +37,24 @@ In composing this text I will follow these rules:
 
  reading .... text was very insightful for me. He actually wrote his second chapter in such a way that Bartosz blog posts make more sense.
 
-> [[CH]](#C), Chapter 2, page 17:</br>
+> [[CH]](#C), Chapter 2, page 17:
+>
 > To establish a link between functional programming and category theory, we need to find a category that is applicable. Observe that a type in a programming language, corresponds to a set in mathematics. Indeed, the type `int` in C based languages, corresponds to some finite set of numbers, the type `char` to a set of letters like 'a', 'z' and '$', and the type `bool` is a set of two elements (true and false). This category, the category of types, turns out to be a very fruitful way to look at programming.
 
 
-| Category           | Objects            | Arrows                 | Notes                        |
-| ------------------ | ------------------ | ---------------------- | ---------------------------- |
-| $\mathbf{Hask}$    | types              | maps                   |                              |
-| $\mathbf{Set}$     | sets               | maps                   |                              |
-| $\mathbf{Mon}$     | monoids            | functors               | Action                       |
-| $\mathbf{Grph}$    | graphs             |                        | Connection                   |
-| $\mathbf{Meas}$    | measure spaces     |                        | Amount                       |
-| $\mathbf{Top}$     | topological spaces | continuous functions   | Neighborhood                 |
-| $\mathbf{Vect}$    | vector spaces      | linear transformations |                              |
-| $\mathbf{Grp}$     | groups             | group homomorphisms    | Reversable action, symmetry  |
-| $\mathbf{Para}$    |                    |                        |                              |
-| $\mathbf{Poly}$    |                    |                        |                              |
-| $\mathbf{Cat}$     | categories         | functors               | Action in context, structure |
+| Category           | Objects            | Arrows                 | Notes                        | Reading         |
+| ------------------ | ------------------ | ---------------------- | ---------------------------- | --------------- |
+| $\mathbf{Hask}$    | types              | maps                   |                              |                 |
+| $\mathbf{Set}$     | sets               | maps                   |                              |                 |
+| $\mathbf{Mon}$     | monoids            | functors               | Action                       | Sec. 13.2       |
+| $\mathbf{Grph}$    | graphs             |                        | Connection                   |                 |
+| $\mathbf{Meas}$    | measure spaces     |                        | Amount                       |                 |
+| $\mathbf{Top}$     | topological spaces | continuous functions   | Neighborhood                 |                 |
+| $\mathbf{Vect}$    | vector spaces      | linear transformations |                              |                 |
+| $\mathbf{Grp}$     | groups             | group homomorphisms    | Reversable action, symmetry  |                 |
+| $\mathbf{Para}$    |                    |                        |                              |                 |
+| $\mathbf{Poly}$    |                    |                        |                              |                 |
+| $\mathbf{Cat}$     | categories         | functors               | Action in context, structure |                 |
 
 Table 0-1: Some examples of omnipresent categories
 
@@ -76,7 +77,8 @@ Table 1-1-1: Mappings between objects in their mathematical and Haskell notation
 
 In mathematics in general, and in category theory specifically, a commutative diagram is a diagram such that all directed paths in the diagram with the same start and endpoints lead to the same result.
 
-> [[SSC]](#SSC), Definition 3.42, page 96:</br>
+> [[SSC]](#SSC), Definition 3.42, page 96: Commutation
+>
 > A *diagram* $D$ in $\mathcal{C}$ is a functor $D: \mathcal{J} \to \mathcal{C}$ from any category $\mathcal{J}$, called the *indexing category* of the diagram $D$. We say that $D$ *commutes* if $D(f) = D(f')$ holds for every parallel pair of morphisms $f,f': a \to b$ in $\mathcal{J}$.
 
 ## 1-2 Properties of Composition
@@ -185,7 +187,8 @@ In programming language, types are sets (often bounded by their bit range)!
 **`Void` Type for the Empty Set**
 : In the Haskell module `Data.Void` it is declared as `absurd :: Void -> a`. The type `Void` represents falsity, and the type of the function `absurd` corresponds to the statement that from falsity follows anything. The `absurd` function can never be executet, as it can no term of type `Void` exists.§
 
-> [[SSC]](#SSC), page 7:<br/>
+> [[SSC]](#SSC), page 7: Empty sets
+>
 > The empty set $\varnothing := \{\}$ has no elements and is a subset of every other set.
 
 
@@ -197,7 +200,8 @@ f44 :: a -> Integer
 f44 _ = 44
 ```
 
-> [[CM]](#CM), page 19:<br/>
+> [[CM]](#CM), page 19: singleton
+>
 > A singleton is also called a *point* or *one-element set*, since when it appears in composition, it focuses the preceding mappings to a single point projection.
 
 A special kind of singleton set, that is used for side-effects, is the one that contains the `unit` type,
@@ -300,7 +304,8 @@ As booleans values `True` and `False` can be associated to $1$ and $0$, the bool
 **Partial Order (poset for short)**
 : A preorder that satisfies an additional condition: if $a \leq b$ and $b \leq a$ then $a=b$.
 
-> [[SSC]](#SSC), Definition 1.25:</br>
+> [[SSC]](#SSC), Definition 1.25: Preorder set
+>
 > For a *preorder set*, if $a \leq b$ and $b \leq a$, we write $b \cong a$ and say $a$ and $b$ are equivalent.
 >
 > Remark 1.30: A *preorder* is a *partial order* if we additionally have that $b \cong a$ implies $b = a$.
@@ -319,13 +324,14 @@ $\ast \in \mathcal{C}$, such that there is only one homset, $\text{hom}\mathcal{
 
 Monoidal categories have been used to formalise the use of networks in computation and reasoning—amongst others, applications include circuit diagrams, Markov processes, quantum computation, and dynamical systems.
 
-## 2-6 Examples of Types
 
-> [[CH]](#CH), Definition 1.2, page 10:</br>
+> [[CH]](#CH), Definition 1.2, page 10: Monoid as set
+>
 > A *monoid* as set $(M, e, \diamond)$ consists of:</br>
 
 
-> [[PC]](#PC), Definition 1.46, page 18:</br>
+> [[PC]](#PC), Definition 1.46, page 18: Monoid as category
+>
 > A *monoid* as category $(M, e, \diamond)$ consists of:</br>
 > - a single set $M$, called the *carrier*;</br>
 > - an element $e \in M$, called the *unit*; and</br>
@@ -335,6 +341,7 @@ Monoidal categories have been used to formalise the use of networks in computati
 > - unitality/identity: for any $m \in M$, we have $e \diamond m = m$ and $m \diamond e = m$, thus $e = \text{id}_M$;</br>
 > - associativity: for any $l,m,n \in M$, we have $(l \diamond m) \diamond n = l \diamond (m \diamond n)$.
 
+## 2-6 Examples of Types
 
 ## 3-6 Challenges
 **1. Generate a free category from:**
@@ -372,7 +379,8 @@ In typed functional programming, the Kleisli category is used to model call-by-v
 
 > Note: This section contains suggestions for Challenge 2.7.1
 
-> [[CH]](#CH), page 75:<br/>
+> [[CH]](#CH), page 75:
+>
 > Every *monad* defines a new category, called the *Kleisli category*.
 
 ## 4-2 Writer in Haskell
@@ -428,6 +436,7 @@ For our limited purposes, a Kleisli category has, as objects, the types of the u
 In order to solve this exercise, [[PC]](#PC) Chapter 5 on *monads* (and Section 2.3.4 on *type constructors*) provides some helpful comments.
 
 > [[PC]](#PC), Chapter 5, page 125:
+>
 > "Starting with the category of types and functions, it’s possible to construct new categories that share the same objects (types), but redefine the morphisms and their composition."
 >
 > "A simple example is [that of partial functions]. These are computations that are not defined for all values of their arguments. We can model such computations using the `Maybe` data type".
@@ -493,6 +502,7 @@ Before jumping into the chapter let's make clear that a *universal property/cons
 ## 5-1 Initial Object & 5-2 Terminal Object
 
 > [[CH]](#CH) Definition 1.3, page 13:
+>
 > An object $t \in \mathcal{C}$ is terminal if for all $a \in \mathcal{C}$ there is [a unique morphism $!: a \to t$]. Similarly, $i \in \mathcal{C}$ is the initial if there [a unique morphism $!: i \to a$] to all objects.</br>
 > ![Figure 5-1-1: Definition of the initial and terminal object in 'Categories and Haskell'](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/definition_5_1_initial_terminal_objects.png)
 
@@ -501,14 +511,23 @@ Within the Haskell type system, $\mathbf{Hask}$, `Void` takes the place of the i
 Since this *unique* morphism exists *for all* objects in $\mathcal{C}$, we say that terminal objects have a *universal property* (more in depth explenation given in [Section 9-1](#9-1-universal-construction)).
 
 Many more notes on initial objects:
+
 - [[SSC]](#SSC), Section 6.2.1, page 183
+
 - [[PC]](#PC), Section 2.2.2, page 39
+
 - [[CH]](#CH), Definition 1.3, page 13
+
 and terminal objects:
+
 - [[SSC]](#SSC), Section 3.5.1, page 108
+
 - [[PC]](#PC), Section 2.2.1, page 37
+
 - [[CH]](#CH), Definition 1.3, page 13
+
 - [[CM]](#CM), Article IV.1, page 213
+
 For an explaination of *uniqueness up to isomorphism* see:
 - https://www.math3ma.com/blog/up-to-isomorphism
 - https://en.wikipedia.org/wiki/Up_to
@@ -522,15 +541,15 @@ The duality w.r.t. categories describes the fact, that for any category $\mathca
 
 The table below lists some examples of duality. Most of them weren't introduced yet, so don't worry if you don't know what they mean. However, for *monomorphism* and *epimorphism* are introduced early on in other books so it might be good to mention that you find more information on them in [CM](#CM) Article II page 52f.
 
-| Element of $\mathcal{C}$         | Element of $\mathcal{C}^{\text{op}}$ |
-| -------------------------------- | ------------------------------------ |
-| identity morphism; $\text{id}_A$ | identity morphism; $\text{id}_A$     |
-| initial object                   | terminal object                      |
-| monomorphism                     | epimorphism                          |
-| product; $x \times y$            | coproduct; $x + y$                   |
-| monad                            | comonad                              |
-| limits                           | colimits                             |
-| cones                            | cocones                              |
+| Element of $\mathcal{C}$         | Element of $\mathcal{C}^{\text{op}}$ | Reading    |
+| -------------------------------- | ------------------------------------ | ---------- |
+| identity morphism; $\text{id}_A$ | identity morphism; $\text{id}_A$     |            |
+| initial object                   | terminal object                      | Cha. 5     |
+| monomorphism                     | epimorphism                          |            |
+| product; $x \times y$            | coproduct; $x + y$                   | Cha. 5     |
+| monad                            | comonad                              |            |
+| limits                           | colimits                             | Cha. 12    |
+| cones                            | cocones                              | Cha. 12    |
 
 Table 5-3-1: Some examples of duality.
 
@@ -540,7 +559,8 @@ which is the identity morphism, $\text{id}_{\ast} = \text{id}^{\text{op}}_{\ast}
 
 ## 5-4 Isomorphisms
 
-> [[CM]](#CM), Section 4.2, page 61:</br>
+> [[CM]](#CM), Section 4.2, page 61: Inverse and Isomorphism
+>
 > If $f: A \to B$, an *inverse* for $f$ is a morphism $g: B \to A$ satisfying both</br>
 > $g \circ f = 1_{A}$, and $f \circ g = 1_{B}$</br>
 > If $f$ has an inverse, we say $f$ is an isomorphism, or invertible morphism.
@@ -553,7 +573,8 @@ Spelling this out in words, to say that two functions are equal up to isomorphis
 
 ## 5-5 Product
 
-> [[PC]](#PC), Definition 2.19, page 40:</br>
+> [[PC]](#PC), Definition 2.19, page 40: Product
+>
 > Let $x$ and $y$ be objects in a category $\mathcal{C}$. A *product* of $x$ and $y$ consists of three things:
 > - an object, denoted as $x \times y$,
 > - a morphism $\pi_1: x \times y \to x$, and
@@ -602,18 +623,18 @@ Note: the triangles $\pi_1 \circ h = f$ and
 $\pi_2 \circ h = g$ are both *choice problems* as introduced in [[CM]](#CM) Article 2.2, page 45.
 
 More notes in:
+
 - [[PC]](#PC), Section 2.2.3, page 40
+
 - [[SSC]](#SSC), Section 3.5.1, page 110
 
 ## 5-6 Coproduct
 
 In the category of sets, the coproduct is the *disjoint union* of two sets. An element of the disjoint union of the two sets `a` and `b` is either an element of `a` or an element of `b`. If the two sets overlap, the disjoint union contains two copies of the common part.
 
-> [[PC]](#PC), Definition 2.31, page 43:</br>
-> Let $x$ and
-> $y$ be objects in a category $\mathcal{C}$.
-> A *coproduct* of $x$ and
-> $y$ is an object, denoted as $x+y$, together with two morphisms
+> [[PC]](#PC), Definition 2.31, page 43: Coproduct
+>
+> Let $x$ and $y$ be objects in a category $\mathcal{C}$. A *coproduct* of $x$ and $y$ is an object, denoted as $x+y$, together with two morphisms
 > $i_1: x \to x+y$ and $i_2: y \to x+y$, such that for any object $a$ and morphisms $f: x \to a$ and $g: y \to a$, there is a unique morphism $h: x+y \to a$ such that the following diagram commutes:
 >
 > ![Figure 5-6-1: Definition of coproducts from 'Programming with Categories'](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/definition_5_6_coproducts.png)
@@ -639,8 +660,11 @@ I also notice that the triangles $h \circ i_1 = f$ and $h \circ i_2 = g$ are Bot
 In Section 12 Bartosz will discus *limits* and *colimits* which are tightly connected to *products* and *coproducts* respectively. In that section, the relation between terminal and initial with product and coproduct will be made more explicit.
 
 Many more notes in:
+
 - [[PC]](#PC), Section 2.2.4, page 43
+
 - [[SSC]](#SSC), Section 6.6.2, page 185
+
 - [[CM]](#CM), Article IV.5, page 222
 
 ## 5-7 Asymmetry
@@ -654,7 +678,8 @@ In the category of sets, an isomorphism is the same as a bijection.
 **1. Show that the terminal object is unique up to unique isomorphism.**</br>
 This challenge asks us to proof the proposition known as the *uniqueness of the terminal object*
 
-> [[CM]](#CM), Article IV.1, page 213</br>
+> [[CM]](#CM), Article IV.1, page 213:
+>
 > Proposition (Uniqueness of the Terminal Object):</br>
 > If $S_1$, $S_2$ are both terminal objects in the category $\mathcal{C}$, then there is exactly one $\mathcal{C}$-map $S_1 \to S_2$, and that map is a $\mathcal{C}$-isomorphism.
 >
@@ -753,7 +778,8 @@ In Haskell, sum types $x + y$ are created using the constructor `x | y` as shown
 
 It turns out that $\mathbf{Set}$ is also a (symmetric) monoidal category with respect to coproduct. The role of the binary operation is played by the disjoint sum, and the role of the unit element is played by the initial object. In terms of types, we have Either as the monoidal operator and Void, the uninhabited type, as its neutral element. You can think of Either as plus, and Void as zero.
 
-> [[RWH]](#RWH), page 44:<br/>
+> [[RWH]](#RWH), page 44: Algebraic data type
+>
 > A famous two-element set is the familiar `Bool`, is the simplest common example of a category of *algebraic data type*, meaning it can have more than one value constructor.
 > ```
 > data Bool = True | False
@@ -871,7 +897,8 @@ Functors are a very powerful concept. For functional programming specifically th
 
 The way functors relate to each other is known as *natural transformations*.
 
-> [[SSC]](#SSC), Definition 3.28, page 91:</br>
+> [[SSC]](#SSC), Definition 3.28, page 91: Functor
+>
 > Let $\mathcal{C}$ and $\mathcal{D}$ be categories. To specify a *functor* from $\mathcal{C}$ to $\mathcal{D}$, denoted $F: \mathcal{C} \to \mathcal{D}$,</br>
 > (i) for every object $c \in \text{Ob}(\mathcal{C})$, one specifies an object $F(c) \in \text{Ob}(\mathcal{D})$;</br>
 > (ii) for every morphism $f: c_1 \to c_2$ in $\mathcal{C}$, one specifies a morphism $F(f): F(c_1) \to F(c_2)$ in $\mathcal{D}$.
@@ -882,41 +909,62 @@ The way functors relate to each other is known as *natural transformations*.
 
 There are a number of commonly used functors, which we are going to list here and explain in more detail later:
 
-> [[PC]](#PC), Definition 3.2, page 67</br>
+> [[PC]](#PC), Definition 3.2, page 67:
+>
 > Two categories $\mathcal{C}$ and $\mathcal{D}$ can be subjected to the following incomplete list of functors</br>
-> - A *identity functor* $\text{id}_{\mathcal{C}}: \mathcal{C} \to \mathcal{C}$
-> - A *constant/blackhole functor* $\Delta_{M}: \mathcal{C} \to \mathcal{M}$ for $m \in \mathcal{M}$, where $\mathcal{M}$ is a monoid containing a singleton set.
-> - A *contravariant functor* $\mathcal{C} \to \mathcal{D}$ is a functor $\mathcal{C}^{\text{op}} \to \mathcal{D}$.
-> - An *endofunctor* on $\mathcal{C}$ is a functor $F: \mathcal{C} \to \mathcal{C}$
-> - A *bifunctor* on $\mathcal{C}$ is a functor $\mathcal{C} \times \mathcal{C} \to \mathcal{D}$
-> - A *profunctor* on $\mathcal{C}$ is a functor $\mathcal{C} \times \mathcal{C}^{\text{op}} \to \mathbf{Set}$.
 
+| Functor Name          | Action                            | Domain & Codomain             | Notes          | Reading         |
+| --------------------- | --------------------------------- | ----------------------------- | -------------- | --------------- |
+| Identity functor      | $\text{id}_{\mathcal{C}}: \mathcal{C} \to \mathcal{C}$        |                                                      |                |                 |
+| Constant functor      | $\Delta_{M}: \mathcal{C} \to \mathcal{M}$                     | $\mathcal{M}$ is a monoid containing a singleton set |                |                 |
+| Contravariant functor | $\mathcal{C} \to \mathcal{D}$                                 |                                                      |                | Sec. 8-6        |
+| Endofunctor           | $F: \mathcal{C} \to \mathcal{C}$                              |                                                      |                |                 |
+| Bifunctor             | $\mathcal{C} \times \mathcal{C} \to \mathcal{D}$              |                                                      |                | Sec. 8-1        |
+| Profunctor            | $\mathcal{C} \times \mathcal{C}^{\text{op}} \to \mathbf{Set}$ |                                                      |                | Sec. 8-7        |
+| Forgetful functor     | $P: \mathcal{C} \to \mathbf{Set}$                             |                                                      |                | Sec. 13-2       |
+| Monoid homomorphism   | $\mathcal{M} \to \mathcal{M}$                                 |
 
 Many more notes in:
+
 - [[PC]](#PC), Section 3.2, page 66
+
 - [[CH]](#CH), Section 1.2, page 11
+
 - [[SSC]](#SSC), Section 3.3.2, page 91
 
 ## 7-1 Functors in Programming
 
 When programming in Haskell, we can't escape its $\mathbf{Hask} \in \mathbf{Set}$ category and will therefore most often talk about *endofunctore*, functors that $\mathbf{Hask}$ to itself. Such functor maps types to some other types. Without mentioning it, some important Haskell functors were already indirectly dicussed:
+
 - `Maybe` functor:
-```haskell
-fmap :: (a -> b) -> Maybe a -> Maybe b
-fmap _ Nothing = Nothing
-fmap f (Just x) = Just (f x)
-```
+    ```haskell
+    fmap :: (a -> b) -> Maybe a -> Maybe b
+    fmap _ Nothing = Nothing
+    fmap f (Just x) = Just (f x)
+    ```
+
 - `List` functor
-```haskell
-fmap :: (a -> b) -> Maybe a -> Maybe b
-fmap _ Nil = Nil
-fmap f (Cons x t) = Cons (f x) (fmap f t)
-```
+    ```haskell
+    fmap :: (a -> b) -> Maybe a -> Maybe b
+    fmap _ Nil = Nil
+    fmap f (Cons x t) = Cons (f x) (fmap f t)
+    ```
+
 - `Reader` functor
-```haskell
-fmap :: (a -> b) -> (r -> a) -> (r -> b)j
-```
+    ```haskell
+    fmap :: (a -> b) -> (r -> a) -> (r -> b)
+    ```
+    In Section 14-1, page 223, Bartosz writes: In Haskell, the hom-functor is better known as the Reader functor.
+    ```haskell
+    type Reader a x = a -> x
+    instance Functor (Reader a) where
+        fmap f h = f . h
+    ```
+
 - `Writer` functor
+
+The reader and writer mondas and functors are quite important in Haskell and I should say more about them.
+
 
 Haskell's Prelude provides a `Functor` type class, capturing the general pattern:
 
@@ -969,8 +1017,11 @@ instance Functor (Const c) where
 ```
 
 More on typeclasses in:
+
 - [[RWH]](#RWH), Chapter 6, page 135
+
 - [[PC]](#PC), Section 3.5, page 74
+
 - [[CH]](#CH), Section 2.1, page 21
 
 
@@ -1084,7 +1135,8 @@ ________________________________________________________________________________
 
 Just as one can take the *Cartesian product*, $\times$, for every pair of two objects within one category $\mathcal{A}$, we can also take a product of two categories $F: \mathcal{A} \times \mathcal{B} \to \mathcal{C}$, where $F$ is called a *bifunctor* as it has two arguments (instead of one as a functor has). The product of categories is an important application of bifunctors, but not the only one...
 
-> [[CH]](#CH), Definition 3.7, page 34:</br>
+> [[CH]](#CH), Definition 3.7, page 34: Product category
+>
 > Given two categories $\mathcal{A}$, $\mathcal{B}$ their *product category* $\mathcal{A} \times \mathcal{B}$ is given by:
 > - The objects $a \in \mathcal{A}$ and
 > $b \in \mathcal{B}$ the bifunctor
@@ -1099,7 +1151,8 @@ Just as one can take the *Cartesian product*, $\times$, for every pair of two ob
 > $h,h' \in \mathcal{B}$:
 > $$(g,h) \circ (g',h') \equiv (g \circ g', h \circ h')$$
 >
-> [[CH]](#CH), Definition 3.8, page 34:</br>
+> [[CH]](#CH), Definition 3.8, page 34: Bifunctor
+>
 > Let $\mathcal{A} , \mathcal{B} , \mathcal{C}$ be categories. A *bifunctor* is a functor:
 > $F: \mathcal{A} \times \mathcal{B} \to \mathcal{C}$.
 
@@ -1125,7 +1178,9 @@ This Haskell implementation of a bifunctor can be sketched as,</br>
 Here, I have given different labels to the three categories involved in the bifunctor mapping. However, as Bartosz states on page 92, when implementing concepts from category theory in Haskell we are bound by $\mathbf{Hask}$ such that we effectively always use endofunctors, meaning $\mathbf{Hask} \times \mathbf{Hask} \to \mathbf{Hask}$.
 
 More notes in:
+
 - [[PC]](#PC), Section 3.4.3, page 83
+
 - [[CH]](#CH), Section 3.3, page 34
 
 ## 8-2 Product and Coproduct Bifunctors
@@ -1229,7 +1284,9 @@ class Profunctor p where
 making it a bifunctor that is contravariant in the first argument, and covariant in the second.
 
 More can be read in:
+
 - [[CH]](#CH), Section 10.1, page 107
+
 - [[PC]](#PC), Section 3.4.4, page 86
 
 ## 8-8 The Hom-Functor
@@ -1457,14 +1514,17 @@ Universal properties are typically indicated through dashed lines in diagrams.
 $$\mathtt{eval}^A_B: B^A \times A \to B$$
 
 More notes on initial objects:
+
 - [[PC]](#PC), Chapter 2, page 35
+
     - Section 2.4.2, page 57: on function evaluation
 
 ## 9-2 Currying
 
 Continuing from where we left off in the last section, the relation between $g$ and $\lambda g$ shows, that the universal property establishes a one-to-one correspondence between functions of two variables and functions of one variable returning functions. This correspondence is called currying, and $\lambda g$ is called the curried version of $g$. This lets us interpret functions as data, which can be passed from and into other functions. This concept is essential in functional programming and very useful in general.
 
-> [[CH]](#CH), Definition 5.1, page 51:</br>
+> [[CH]](#CH), Definition 5.1, page 51:
+>
 > Let $Z, A, B$ be sets. We define $(A \to B)$ to be the set of functions between $A$ and $B$. Given a function of two variables:</br>
 > $g: Z \times A \to B$,</br>
 > we have a function:</br>
@@ -1473,6 +1533,7 @@ Continuing from where we left off in the last section, the relation between $g$ 
 >
 
 More notes on exponentials:
+
 - [[PC]](#PC), Section 2.4, page 56
 
 ## 9-3 Exponentials
@@ -1489,7 +1550,8 @@ exponential satisfy the universal property (using Definition 5.1 from the previo
 
 $$\text{hom}\mathcal{C}(x \times y, a) \cong \text{hom}\mathcal{C}(x, a^y)$$.
 
-> [[PC]](#PC), Definition 2.57, page 58:</br>
+> [[PC]](#PC), Definition 2.57, page 58:
+>
 > Let $A, B \in \mathcal{C}$ be objects in a cartesian category. An object $B^A$, equipped with a morphism $\text{eval}_{A,B}: B^A \times A \to B$, is called an *exponential* or *function object/type* for morphisms $A$ to $B$ if it has the following universal property:
 > - for any object $X$ and morphism $g: Z \times A \to B$, there exists a unique map $g': Z \to B^A$ such that the diagram in [Figure 9.1.1](#figure-9-1-1) commutes.
 
@@ -1499,7 +1561,8 @@ Note that what is commonly referred to as *function types* in computer science, 
 
 ## 9-4 Cartesian Closed Categories
 
-> [[CH]](#CH), Definition 5.2, page 52:</br>
+> [[CH]](#CH), Definition 5.2, page 52:
+>
 > *Cartesian closed category* (CCC): A category $\mathcal{C}$ is called *cartesian closed category*, if the following conditions are satisfied:
 > - it has a *terminal object*,
 > - for each pair $a,b \in \mathcal{C}$ there exists a *product* $a \times b$, and
@@ -1510,8 +1573,11 @@ Having explained all previous concepts using the $\mathbf{Set}$ category, we kno
 A cartesian closed category, that additionally contains initial objects and coproducts is called bicartesian closed category.
 
 Read more in:
+
 - [[PC]](#PC), Section 2.4, page 56
+
 - [[CH]](#CH), Chapter 5, page 51
+
 - [[SSC]](#SSC), Section 7.2.1, page 225
 
 ## 9-5 Exponentials and Algebraic Data Types
@@ -1536,7 +1602,8 @@ ________________________________________________________________________________
 
 We talked about functors as a means of lifting functions over structure so that we may transform only the contents, leaving the structure alone (`fmap :: (a -> b) -> f a -> f b`). What if we wanted to transform only the structure and leave the type argument to that structure or type constructor alone? With this, we’ve arrived at natural transformations!
 
-> [[CH]](#CH), Definition 1.10, page 15:</br>
+> [[CH]](#CH), Definition 1.10, page 15: Natural transformation
+>
 > Let $\mathcal{C}$ and $\mathcal{D}$ be categories, and let $F,G: \mathcal{C} \to \mathcal{D}$ be two functors. A *natural transformation* $\alpha$ from $\mathcal{C}$ to $\mathcal{D}$, is a set of morphisms:</br>
 > $\alpha = \{\alpha_a: Fa \to Ga \, | \, a \in \text{Ob}(\mathcal{C}) \}$,</br>
 > indexed by objects in $\mathcal{C}$, so that for all morphisms $f: a \to b$ the diagram:</br>
@@ -1558,8 +1625,11 @@ type natTrans f g = forall a . f a -> g a
 ```
 
 Read more in:
+
 - [[PC]](#PC), Section 3.5, page 88
+
 - [[CH]](#CH), Section 1.4, page 15
+
 - [[SSC]](#SSC), Section 3.3.4, page 95
 
 ## 10-1 Polymorphic Functions
