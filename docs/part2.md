@@ -215,6 +215,18 @@ More reading:
 
 ## 14-3 Challenges
 
+**1. Show that the hom-functors map identity morphisms in C to corresponding identity functions in $\mathbf{Set}$.**
+
+**2. Show that `Maybe` is not representable.**
+
+**3. Is the `Reader` functor representable?**
+
+**4. Using `Stream` representation, memoize a function that squares its argument.**
+
+**5. Show that `tabulate` and `index` for `Stream` are indeed the inverse of each other. (Hint: use induction.)**
+
+
+
 # 15 The Yoneda Lemma
 ________________________________________________________________________________
 

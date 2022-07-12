@@ -32,11 +32,6 @@ In composing this text I will follow these rules:
 
 # 0 Preface
 
-'Category Theory for Programmers' was written as a series of blog posts that are at times very vague about the concepts that are introduced
-
-
- reading .... text was very insightful for me. He actually wrote his second chapter in such a way that Bartosz blog posts make more sense.
-
 > [[CH]](#C), Chapter 2, page 17:
 >
 > To establish a link between functional programming and category theory, we need to find a category that is applicable. Observe that a type in a programming language, corresponds to a set in mathematics. Indeed, the type `int` in C based languages, corresponds to some finite set of numbers, the type `char` to a set of letters like 'a', 'z' and '$', and the type `bool` is a set of two elements (true and false). This category, the category of types, turns out to be a very fruitful way to look at programming.
@@ -44,11 +39,11 @@ In composing this text I will follow these rules:
 
 | Category           | Objects            | Arrows                 | Notes                        | Reading         |
 | ------------------ | ------------------ | ---------------------- | ---------------------------- | --------------- |
-| $\mathbf{Hask}$    | types              | maps                   |                              |                 |
+| $\mathbf{Hask}$    | types              | maps                   |                              | Haskell's wiki  |
 | $\mathbf{Set}$     | sets               | maps                   |                              |                 |
 | $\mathbf{Mon}$     | monoids            | functors               | Action                       | Sec. 13.2       |
-| $\mathbf{Grph}$    | graphs             |                        | Connection                   |                 |
-| $\mathbf{Meas}$    | measure spaces     |                        | Amount                       |                 |
+| $\mathbf{Grph}$    | graphs             | functors               | Connection                   |                 |
+| $\mathbf{Meas}$    | measure spaces     | functors               | Amount                       |                 |
 | $\mathbf{Top}$     | topological spaces | continuous functions   | Neighborhood                 |                 |
 | $\mathbf{Vect}$    | vector spaces      | linear transformations |                              |                 |
 | $\mathbf{Grp}$     | groups             | group homomorphisms    | Reversable action, symmetry  |                 |
@@ -58,10 +53,13 @@ In composing this text I will follow these rules:
 
 Table 0-1: Some examples of omnipresent categories
 
-In all categories listed in [Talbe 1-1-1](table-1-1-1), the arrows correspond to *structure preserving maps* (which do not necessarily need to be functions, but can be assignments such as numbers to football players). For the application of category theory to Haskell we work with the category $\mathbf{Hask}$ which is a subset of $\mathbf{Set}$ and contains all Haskell types. More on that in [Chapter 2](#2-types-and-functions).
+In all categories listed in [Talbe 0-1](table-0-1), the arrows correspond to *structure preserving maps* (which do not necessarily need to be functions, but can be assignments such as numbers to football players). For the application of category theory to Haskell we work with the category $\mathbf{Hask}$ which is a subset of $\mathbf{Set}$ and contains all Haskell types. More on that in [Chapter 2](#2-types-and-functions).
 
-# 1 Category: The Essence of Composition
+Let me just note here, that hitherto there is no proof I know of that shows that $\mathbf{Hask}$ is indeed a category, and a more in depth discussion of this was written out by Andrej Bauer (2017): http://math.andrej.com/2016/08/06/hask-is-not-a-category/
+
+
 ________________________________________________________________________________
+# 1 Category: The Essence of Composition
 
 
 ## 1-1 Arrows as Functions & 1-2 Properties of Composition
@@ -173,8 +171,8 @@ No, since friendships are not composable.
 **6. When is a directed graph a category?**</br>
 If the digraph observes the identity and associativity law by containing self-loops and if `a -> b -> c` then it must follow that `a -> c`.
 
-# 2 Types and Functions
 ________________________________________________________________________________
+# 2 Types and Functions
 
 ## 2-5 Pure and Dirty Functions
 Putting it simple, all functions are pure in Haskell as long as they do not interact with the `IO Monad`. Situations in which you have to perform I/O actions are, i.e., when implementing random number generators, which have to interact with the outside world (such interaction is also called *side effects*) to generate a reasonably random number. This can be done using, i.e., the `getStdGen` I/O action of the `System.Random` module.
@@ -283,8 +281,9 @@ boolMap4 False = True
 
 ![Answer to 2.7.6](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/challenge_2_7_6.png)
 
-# 3 Categories Great and Small
+
 ________________________________________________________________________________
+# 3 Categories Great and Small
 
 
 ## 3-2 Simple Graphs
@@ -335,7 +334,7 @@ Monoidal categories have been used to formalise the use of networks in computati
 > A *monoid* as category $(M, e, \diamond)$ consists of:</br>
 > - a single set $M$, called the *carrier*;</br>
 > - an element $e \in M$, called the *unit*; and</br>
-> - an associative function $\diamond : M \times M \to M$, called the (binary) *operation*.
+> - an associative function $\diamond : M \times M \to M$, called the *binary operation* or *tensor product*.
 >
 > These are subject to two conditions:
 > - unitality/identity: for any $m \in M$, we have $e \diamond m = m$ and $m \diamond e = m$, thus $e = \text{id}_M$;</br>
@@ -370,8 +369,9 @@ Our morphisms are subset relations. Every set includes itself, $A \subseteq A$. 
 - b) C++ types with the following subtyping relation: T1 is a sub-type of T2 if a pointer to T1 can be passed to a function that expects a pointer to T2 without triggering a compilation error.
 
 
-# 4 Kleisli Functions
 ________________________________________________________________________________
+# 4 Kleisli Functions
+
 
 It is quite strange that Kleisli functions are itroduced in the book before, e.g., isomorphisms or other concepts generally introduced beforehand in other books.
 
@@ -379,7 +379,7 @@ In typed functional programming, the Kleisli category is used to model call-by-v
 
 > Note: This section contains suggestions for Challenge 2.7.1
 
-> [[CH]](#CH), page 75:
+> [[CH]](#CH), Section 7.1.2, page 75:
 >
 > Every *monad* defines a new category, called the *Kleisli category*.
 
@@ -492,9 +492,8 @@ safeSqrtDiv :: Float -> Maybe Float
 safeSqrtDiv = safeSqrt <=< safeDiv1
 ```
 
-
-# 5 Products and Coproducts
 ________________________________________________________________________________
+# 5 Products and Coproducts
 
 
 Before jumping into the chapter let's make clear that a *universal property/construction* are unique up to isomorphism ...
@@ -745,8 +744,9 @@ we find that it is too small -- it only coveres the `Int` dimension of the copro
 **8. Come up with an inferior candidate for a coproduct of `Int` and `Bool` that cannot be better than `Either` because it allows multiple acceptable morphisms from it to `Either`.**</br>
 
 
-# 6 Simple Algebraic Data Types
 ________________________________________________________________________________
+# 6 Simple Algebraic Data Types
+
 This section develops our understanding of *products* and *coproducts* (introduced in Sections 5.5 and 5.6) further in the context of data types.
 
 ## 6-1 Product Types
@@ -888,8 +888,8 @@ prodToSum (False, a) = Left a
 prodToSum (True, a)  = Right a
 ```
 
-# 7 Functors
 ________________________________________________________________________________
+# 7 Functors
 
 While functions act on elements in objects within categories, functors act across categories. In so doing, functors from one category to another are structure-preserving maps of *objects and morphisms*.
 
@@ -1128,8 +1128,8 @@ fmap (g . f) (Cons a as) = Cons ((g . f) a) (fmap (g . f) as)     -- def of fmap
                          = (fmap g . fmap f) (Cons a as)          -- def of comp
 ```
 
-# 8 Functoriality
 ________________________________________________________________________________
+# 8 Functoriality
 
 ## 8-1 Bifunctors
 
@@ -1269,7 +1269,7 @@ $H_F: \mathcal{C} \times \mathcal{D}^{\text{op}} \to \mathbf{Set}$,</br>
 
 A endo-profunctor is $H_F: \mathcal{C} \times \mathcal{C}^{\text{op}} \to \mathbf{Set}$, which generalizes hom-functors $\text{hom}\mathcal{C}: \mathcal{C} \times \mathcal{C}^{\text{op}} \to \mathbf{Set}$, which will be discussed more in the next section.
 
-Profunctors can generalize functors.
+Profunctors generalise functors and the simplest example of a profunctor is the *hom-functor* which, in Haskell, is represented by the arrow type constructor `->`.
 
 The Haskell implementation of profunctors can be found in `Data.Profunctor`,
 ```haskell
@@ -1477,8 +1477,8 @@ Skip
 **6. Should `std::map` be considered a bifunctor or a profunctor in the two template arguments `Key` and `T`? How would you redesign this data type to make it so?**
 
 
-# 9 Function Types
 ________________________________________________________________________________
+# 9 Function Types
 
 Function types can also be seen as existing in sets, such that $\text{hom}\mathcal{C}(a,b) \in \mathbf{Set}$. Since we can talk of functions as being sets themselves, we can reinterpret $z(a)$ as a product of two sets $z \times a$, and instead of writing $z: a \to b$ we have another function $g$ that acts on the product as $g: z \times a \to b$.
 
@@ -1540,15 +1540,15 @@ More notes on exponentials:
 
 The function type, $z = \text{hom}\mathcal{C}(a,b)$, which can be mapped to $(a \implies b)$ is often called the *exponential*, denoted as $b^a$. Just as products satisfy the universal property (see [Section 5-5](#5-5-products))
 
-$$\text{hom}\mathcal{C}(a, x \times y) \cong \text{hom}\mathcal{C}(a, x) \times \text{hom}\mathcal{C}(a, y)$$,
+$$\text{hom}\mathcal{C}(a, x \times y) \cong \text{hom}\mathcal{C}(a, x) \times \text{hom}\mathcal{C}(a, y)$$
 
 and coproducts satisfy the universal property (see [Section 5-6](#5-6-coproduct))
 
-$$\text{hom}\mathcal{C}(x + y, a) \cong \text{hom}\mathcal{C}(x, a) \times \text{hom}\mathcal{C}(y, a)$$.
+$$\text{hom}\mathcal{C}(x + y, a) \cong \text{hom}\mathcal{C}(x, a) \times \text{hom}\mathcal{C}(y, a)$$
 
 exponential satisfy the universal property (using Definition 5.1 from the previous Section)
 
-$$\text{hom}\mathcal{C}(x \times y, a) \cong \text{hom}\mathcal{C}(x, a^y)$$.
+$$\text{hom}\mathcal{C}(x \times y, a) \cong \text{hom}\mathcal{C}(x, a^y)$$
 
 > [[PC]](#PC), Definition 2.57, page 58:
 >
@@ -1560,6 +1560,10 @@ Note that what is commonly referred to as *function types* in computer science, 
 
 
 ## 9-4 Cartesian Closed Categories
+
+Before giving a definition of cartesian closed categories, let's spend a few sentences on closed categories.
+
+Given objects $X$ and $Y$ in any category $\mathcal{C}$, there is a *set* of morphisms from $X$ to $Y$, denoted $\text{hom}(X, Y)$. In a closed category there is also an *object* of morphisms from $X$ to $Y$, which we denote by $X \multimap Y$ (many other notations are also used). In this situation we speak of an 'internal hom', since the object $X \multimap Y$ lives inside $\mathcal{C}$, instead of 'outside', in the category of sets, $\mathbf{S}$.
 
 > [[CH]](#CH), Definition 5.2, page 52:
 >
@@ -1597,8 +1601,24 @@ $$(a \times b)^c = a^c \times b^c$$
 
 ## 9-6 Curry-Howard Isomorphism
 
-# 10 Natural Transformations
+Logicians had begun using categories where the objects represent propositions and the morphisms represent proofs. The idea is that a proof is a process going from one proposition (the hypothesis) to another (the conclusion). Later, computer scientists started using categories where the objects represent data types and the morphisms represent programs. They also started using ‘flow charts’ to describe programs. Abstractly, these are very much like Feynman diagrams. Take a look at the 'Rosetta Stone' below to see analogies between different research areas.
+
+| Category Theory | Physics | Topology  | Logic       | Computation |
+|-----------------+---------+-----------+-------------+-------------|
+| object          | system  | manifold  | proposition | data type   |
+| morphism        | process | cobordism | proof       | program     |
+
+Tabel 9-6-1 The 'Rosetta Stone' taken from John C. Baez and Mike Stay 'Physics, Topology, Logic and Computation: A Rosetta Stone'.
+
+The Curry-Howard isomorphism is a striking relationship connecting two of these seemingly unrelated areas of mathematics -- type theory in computation and structural logic. The Curry–Howard isomorphism, hereafter referred to as simply CH, tells us that in order to prove any mathematical theorem, all we have to do is construct a certain type which reflects the 'nature' of that theorem, then find a value that has that type.
+
+It is due to this insight, that in Haskell there is a strict distinction between type signatures and values. Types are constructed based on their signatures and values are constructed only in the actual code. For this reason it is common in Haskell, to first write out a program conceptually by defining all type signatures before moving on to construct their values.
+
+For more reading on CH isomorphism with Haskell see:
+https://en.wikibooks.org/wiki/Haskell/The_Curry–Howard_isomorphism
+
 ________________________________________________________________________________
+# 10 Natural Transformations
 
 We talked about functors as a means of lifting functions over structure so that we may transform only the contents, leaving the structure alone (`fmap :: (a -> b) -> f a -> f b`). What if we wanted to transform only the structure and leave the type argument to that structure or type constructor alone? With this, we’ve arrived at natural transformations!
 
