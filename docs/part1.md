@@ -1120,12 +1120,18 @@ fmap (g . f) Nil = Nil
                  = fmap g (fmap f Nil)
                  = (fmap g . fmap f) Nil
 
-fmap (g . f) (Cons a as) = Cons ((g . f) a) (fmap (g . f) as)     -- def of fmap
-                         = Cons ((g . f) a) (fmap g (fmap f as))  -- induction
-                         = Cons (g (f a)) (fmap g (fmap f as))    -- def of comp
-                         = fmap g (Cons (f a) (fmap f as))        -- def of fmap
-                         = fmap g (fmap f (Cons a as))            -- def of fmap
-                         = (fmap g . fmap f) (Cons a as)          -- def of comp
+                         -- def of fmap
+fmap (g . f) (Cons a as) = Cons ((g . f) a) (fmap (g . f) as)
+                         -- induction
+                         = Cons ((g . f) a) (fmap g (fmap f as))
+                         -- def of comp
+                         = Cons (g (f a)) (fmap g (fmap f as))
+                         -- def of fmap
+                         = fmap g (Cons (f a) (fmap f as))
+                         -- def of fmap
+                         = fmap g (fmap f (Cons a as))
+                         -- def of comp
+                         = (fmap g . fmap f) (Cons a as)
 ```
 
 ________________________________________________________________________________
@@ -1561,9 +1567,12 @@ Note that what is commonly referred to as *function types* in computer science, 
 
 ## 9-4 Cartesian Closed Categories
 
-Before giving a definition of cartesian closed categories, let's spend a few sentences on closed categories.
+Before giving a definition of cartesian closed categories, let's spend a few sentences on closed categories. Given objects $X$ and $Y$ in any category $\mathcal{C}$, there is a *set* of morphisms from $X$ to $Y$, denoted $\text{hom}(X, Y)$. In a closed category there is also an *object* of morphisms from $X$ to $Y$, which we denote by $X \multimap Y$ (many other notations are also used). In this situation we speak of an 'internal hom', since the object $X \multimap Y$ lives inside $\mathcal{C}$, instead of 'outside', in the category of sets, $\mathbf{S}$.
 
-Given objects $X$ and $Y$ in any category $\mathcal{C}$, there is a *set* of morphisms from $X$ to $Y$, denoted $\text{hom}(X, Y)$. In a closed category there is also an *object* of morphisms from $X$ to $Y$, which we denote by $X \multimap Y$ (many other notations are also used). In this situation we speak of an 'internal hom', since the object $X \multimap Y$ lives inside $\mathcal{C}$, instead of 'outside', in the category of sets, $\mathbf{S}$.
+The 'internal hom' object, $X \multimap Y$, is an abstraction of the notion of transformation such as in, e.g.,
+
+- computation: any program that takes input of type `X` and produces output of type `Y` can be thought of as type in it self, a *function type*
+- logic: take a proof that goes from some assumtion $X$ to some conclusion $Y$ and turn it into a proof that goes from no assumptions to the conclusion '$X$ implies $Y$'.
 
 > [[CH]](#CH), Definition 5.2, page 52:
 >
@@ -1620,6 +1629,8 @@ https://en.wikibooks.org/wiki/Haskell/The_Curry–Howard_isomorphism
 ________________________________________________________________________________
 # 10 Natural Transformations
 
+> "I didn't invent categories to study functors; I invented them to study natural transformations." Saunders Mac Lane
+
 We talked about functors as a means of lifting functions over structure so that we may transform only the contents, leaving the structure alone (`fmap :: (a -> b) -> f a -> f b`). What if we wanted to transform only the structure and leave the type argument to that structure or type constructor alone? With this, we’ve arrived at natural transformations!
 
 > [[CH]](#CH), Definition 1.10, page 15: Natural transformation
@@ -1654,9 +1665,11 @@ Read more in:
 
 ## 10-1 Polymorphic Functions
 
-Natural transformation are secretly at the heart of polymorphic functions. Infact, a natural transformation is a polymorphic function.
+What would a natural transformation in $\mathbf{Hask}$ be? In this category functors are endofunctors from types to types: $F: \mathbf{Hask} \to \mathbf{Hask}$ and $G: \mathbf{Hask} \to \mathbf{Hask}$. A natural transformation $\alpha$ must have a component, in this case a haskell function, at every type $a$, $\alpha_a : F a \to G a$. In programming we often drop the subscript and allow $a$ to very freely.
 
-A first example of a natural transformation is the Exercises 4.1.1 in [[RWH]](#RWH) on list operations, such as `safeHead` which is a function polymorphic in `a`,
+Such a function $\alpha : F a \to G a$ is called *polymorphic*. In functional programming there are usually two types of polymorphisms: *ad-hoc* and *parametric*. Simply put, a parametrically polymorphic function has a single implementation for all types, while a ad-hoc polymorphic function can have different implementations depending on the incoming type (through typeclasses).
+
+Thus, natural transformation are secretly at the heart of polymorphic functions. A typical first example of a natural transformation is the Exercises 4.1.1 in [[RWH]](#RWH) on list operations, such as `safeHead` which is a function polymorphic in `a`,
 
 ```haskell
 safeHead :: [a] -> Maybe a
@@ -1664,11 +1677,23 @@ safeHead [] = Nothing
 safeHead (x:xs) = Just x
 ```
 
-which needs to satisfy the naturality condition
+for which we can proof that the naturality condition holds as follows:
 
 ```haskell
-fmap f . safeHead = safeHead . fmap f
+(fmap f . safeHead) [] = fmap f Nothing
+                       = Nothing
+                       = safeHead []
+                       = (safeHead . fmap f) []
+
+(fmap f . safeHead) (x:xs) = fmap f (Just x)
+                           = Just (f x)
+                           = safeHead (f x : fmap f xs)
+                           = (safeHead . fmap f) (x:xs)
 ```
+
+Therefore we have shown that the condition `fmap f . safeHead = safeHead . fmap f` is satisfied and that `safeHead` is a natural transformation.
+
+In this example we see, how `safeHead` only transforms the structure of `head` but leaves the type arguments unchanged.
 
 ## 10-2 Beyond Naturalitys
 Since all standard algebraic data types are functors, any polymorphic function between such types is a natural transformation.
@@ -1677,22 +1702,26 @@ Since all standard algebraic data types are functors, any polymorphic function b
 
 As mentioned in the introduction to this chapter, just as functions form a set, functors form a category.
 
-The cool thing is, just as the exponential $z = \text{hom}\mathcal{C}(a,b)$ is a set of morphisms between two sets in the same category, do the functors from $\mathcal{C} \implies \mathcal{D}$ form a category. And we can compose those categories of functor! Let $\alpha: \mathcal{C} \implies \mathcal{D}$ and $\beta: \mathcal{D} \implies \mathcal{E}$, then we have $\alpha \circ \beta: \mathcal{C} \implies \mathcal{E}$, defined by $(\alpha_a \circ \beta_a) = \alpha_a \circ \beta_a$.
+The cool thing is, just as exponentials $z = \text{hom}\mathcal{C}(a,b)$ form a set of morphisms between two sets in the same category, do the functors of $\mathcal{C} \implies \mathcal{D}$ form a category. To see that this is indeed the case, let's recap what a category is made up of:
 
-
-So let's recap what a category is made up of:
-- objects
-- maps
+- objects: functors $F$ and $G$
+- maps: natural transformations $\alpha$
 - for each map f, one object as domain of f and one object as codomain of f
 - for each object A an identity map, which has domain A and codomain A
 - composition of maps
 
 with the following rules:
+
 - identity laws
 - associativity laws
 
+So, let's show how we can compose the categories of functors. Let $\alpha: \mathcal{C} \implies \mathcal{D}$ and $\beta: \mathcal{D} \implies \mathcal{E}$, then we have $\alpha \circ \beta: \mathcal{C} \implies \mathcal{E}$, defined by $(\alpha \circ \beta)_a = \alpha_a \circ \beta_a$.
+
+![Figure 10-3-1: Vertical (left) and horizontal (right) composition of natural transformations.](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/diagrams_10_0_hor_ver_comp.png){ height=100px }
+
 ## 10-4 2-Categories
-This richer structure is an example of a 2-category, a generalization of a category where, besides objects and morphisms (which might be called 1-morphisms in this context), there are also 2-morphisms, which are morphisms between morphisms.
+
+In the category of categories, $\mathbf{Cat}$, functors are morphisms and natural transformations are morphisms between morphisms. This richer structure is an example of a 2-category, a generalisation of a category where, besides objects and morphisms (which might be called 1-morphisms in this context), there are also 2-morphisms, which are morphisms between morphisms.
 
 > nLab:</br>
 > The notion of a 2-category generalizes that of category: a 2-category is a higher category, where on top of the objects and morphisms, there are also 2-morphisms.
@@ -1702,7 +1731,7 @@ This richer structure is an example of a 2-category, a generalization of a categ
 > - functors as 1-morphisms between objects;
 > - natural transformations as 2-morphisms between morphisms.
 
-No reading among my references on this topic.
+No further reading among my references on this topic.
 
 ## 10-5 Conclusion
 
@@ -1736,10 +1765,11 @@ fmap f . alpha (Just x) = fmap f (Cons a (List a))
                       = alpha . fmap f (Just x)
 ```
 
-Thus is both cases we have shown that `fmap f . alpha = alpha . fmap f`.
+Thus, in both cases we have shown naturality condition, `fmap f . alpha = alpha . fmap f`, is satisfied.
 
 
-**2. Define at least two different natural transformations between `Reader ()` and the list functor. How many different lists of `()` are there?**</br>
+**2. Define at least two different natural transformations between `Reader ()` and the `List` functor. How many different lists of `()` are there?**</br>
+
 Remember the `Reader` functor from [Sections 7.1](#7-1-functors-in-programming), which is implemented in Haskell as:
 
 ```haskell
@@ -1747,7 +1777,7 @@ instance Functor ((->) r) where
     fmap f g = f . g
 ```
 
-However, in this chapter the `Reader` functor was implemented differently and we use the following definition
+which was slightly rewritten in this chapter,
 
 ```haskell
 newtype Reader e a = Reader (e -> a)
@@ -1756,21 +1786,19 @@ instance Functor (Reader e) where
     fmap f (Reader g) = Reader (\x -> f (g x))
 ```
 
-, which actually is pretty much the same as the original definition...
-
-Thus, we are aked to find two different netural transformations between `Reader () -> List a`, where the `List` container was defined as
+We are asked to find two different natural transformations between `Reader () -> List a`, where the `List` container is defined as
 
 ```haskell
 data List a = Nil | Cons a (List a)
 ```
 
-Thus, the natural transformation $\alpha$ is of the form
+Thus, the type signature of the natural transformation $\alpha$ needs to be of the form
 
 ```haskell
 alpha :: Reader () a -> List a
 ```
 
-As Bartosz mentioned on page 165 "There are only two of these, `dumb` and `obvious`",
+As Bartosz mentioned on page 165 "There are only two [natural transformation in this case], `dumb` and `obvious`",
 
 ```haskell
 dumb :: Reader () a -> List a
@@ -1780,9 +1808,13 @@ dumb (Reader _) = Nil
 Verifying naturality condition through equational reasoning again
 
 ```haskell
+                         -- def of dumb
 fmap f . dumb (Reader g) = fmap f Nil
+                         -- induction
                          = Nil
+                         -- def of dumb
                          = dumb (Reader (f . g))
+                         -- def of Reader
                          = dumb . fmap f (Reader g)
 ```
 
@@ -1796,28 +1828,59 @@ obvious (Reader g) = Cons g a (List g a)
 Verifying naturality condition through equational reasoning again
 
 ```haskell
-                            -- definition of obvious
+                            -- def of obvious
 fmap f . obvious (Reader g) = fmap f (Cons g a (List g a))
-                            -- definition of
+                            -- induction
                             = Cons (f . g) a (List (f . g) a)
-                            -- definition of
+                            -- def of obvious
                             = obvious (Reader (f . g))
-                            -- definition of
+                            -- def of Reader
                             = obvious . fmap f (Reader g)
 ```
 
-But besides these, we can also have other transformations such as
+But besides these, we can also have transformations such as
 
 ```haskell
 double :: Reader () a -> [a]
 double (Reader g) = [g (), g ()]
 ```
 
-**3. Continue the previous exercise with Reader `Bool` and `Maybe`.**</br>
+or infinite lists
+
+```haskell
+double :: Reader () a -> [a]
+double (Reader g) = g () : more (Reader g)
+```
+
+This means that we have an infinite amount of natural transformations between the `Reader ()` and `List` functors.
+
+**3. Continue the previous exercise with `Reader Bool` and `Maybe`.**</br>
+
+There are only three possible natural transformations between the two algebraic data types,
+
+```haskell
+none :: Reader Bool a -> Maybe a
+none (Reader g) = Nothing
+
+true :: Reader Bool a -> Maybe a
+true (Reader g) = Just (g True)
+
+false :: Reader Bool a -> Maybe a
+false (Reader g) = Just (g False)
+```
+
 
 **4. Show that horizontal composition of natural transformation satisfies the naturality condition (hint: use components). It’s a good exercise in diagram chasing.**</br>
 
-**5. Write a short essay about how you may enjoy writing down the evident diagrams needed to prove the interchange law.**</br>
+**5. Write about how you may write down the diagrams needed to prove the interchange law.**</br>
+
+The *interchange law* is expressed by the following diagram
+
+![Interchange law](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/diagrams_10_0_interchange.png){ height=100px }
+
+In such case, we have two different ways to construct a natural transformation from $F' F$ to $H' H : (\beta' . \alpha') \circ (\beta . \alpha)$ and $(\beta' \circ \beta) . (\alpha' \circ \alpha)$. The proof of the equality between the two natural transformation can be written out diagramatically,
+
+![Proof](/Users/christovis/Documents/category-theory-for-programmers-companion/docs/imgs/proof_10_5_interchange_law.png){ height=200px }
 
 **6. Create a few test cases for the opposite naturality condition of transformations between different `Op` functors. Here’s one choice:**
 
